@@ -4,6 +4,11 @@ interface DynamicArrayInterface {
 	size: number;
 }
 
+/**
+ * Dynamic Array Class
+ * Note: JavaScript arrays are dynamic by default,
+ * but this class is used to simulate the behavior of a dynamic array.
+ */
 class DynamicArray implements DynamicArrayInterface {
 	capacity: number;
 	array: Array<number | undefined>;
@@ -11,7 +16,7 @@ class DynamicArray implements DynamicArrayInterface {
 
 	/**
 	 * @constructor
-	 * @param {number} capacity
+	 * @param {number} capacity - Initial capacity of the array.
 	 */
 	constructor(capacity: number) {
 		this.capacity = capacity;
@@ -20,16 +25,18 @@ class DynamicArray implements DynamicArrayInterface {
 	}
 
 	/**
-	 * @param {number} i
-	 * @returns {number}
+	 * Get the value at the i-th index.
+	 * @param {number} i - The index to get the value from.
+	 * @returns {number} - The value at the i-th index.
 	 */
 	get(i: number) {
 		return this.array[i];
 	}
 
 	/**
-	 * @param {number} i
-	 * @param {number} n
+	 * Set a value at the i-th index.
+	 * @param {number} i - The index to insert the value at.
+	 * @param {number} n - The value to insert.
 	 * @returns {void}
 	 */
 	set(i: number, n: number) {
@@ -37,7 +44,8 @@ class DynamicArray implements DynamicArrayInterface {
 	}
 
 	/**
-	 * @param {number} n
+	 * Insert a value in the last position of the array.
+	 * @param {number} n - The value to insert.
 	 * @returns {void}
 	 * when you add an element using the pushBack method, you place the new
 	 * element at the position indicated by the current size of the array.
@@ -59,6 +67,7 @@ class DynamicArray implements DynamicArrayInterface {
 	}
 
 	/**
+	 * Remove the last element in the array.
 	 * @returns {number}
 	 */
 	popback() {
@@ -75,6 +84,7 @@ class DynamicArray implements DynamicArrayInterface {
 	}
 
 	/**
+	 * Resize the array to double its current capacity.
 	 * @returns {void}
 	 */
 	resize() {
@@ -91,14 +101,16 @@ class DynamicArray implements DynamicArrayInterface {
 	}
 
 	/**
-	 * @returns {number}
+	 * Get the current size of the array.
+	 * @returns {number} - The current size.
 	 */
 	getSize() {
 		return this.size;
 	}
 
 	/**
-	 * @returns {number}
+	 * Get the current capacity of the array.
+	 * @returns {number} - The current capacity.
 	 */
 	getCapacity() {
 		return this.capacity;
