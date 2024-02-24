@@ -29,7 +29,7 @@ class DynamicArray implements DynamicArrayInterface {
 	 * @param {number} i - The index to get the value from.
 	 * @returns {number} - The value at the i-th index.
 	 */
-	get(i: number) {
+	get(i: number): number | undefined {
 		return this.array[i];
 	}
 
@@ -39,7 +39,7 @@ class DynamicArray implements DynamicArrayInterface {
 	 * @param {number} n - The value to insert.
 	 * @returns {void}
 	 */
-	set(i: number, n: number) {
+	set(i: number, n: number): void {
 		this.array[i] = n;
 	}
 
@@ -51,11 +51,13 @@ class DynamicArray implements DynamicArrayInterface {
 	 * element at the position indicated by the current size of the array.
 	 * After adding an element, you increment the size to reflect
 	 * the new total number of elements in the array.
+	 * ---
+	 * My Understanding
 	 * We use the size to tell us how many elements are in the array
 	 * And we use the size to place the element at the end of the array!
 	 * Once we do it, then we increment size!
 	 */
-	pushback(n: number) {
+	pushback(n: number): void {
 		if (this.size === this.capacity) {
 			// there are more elements than available for capacity!
 			// so we must resize
@@ -70,7 +72,7 @@ class DynamicArray implements DynamicArrayInterface {
 	 * Remove the last element in the array.
 	 * @returns {number}
 	 */
-	popback() {
+	popback(): number | undefined {
 		const lastIndex = this.size - 1;
 		const lastElement = this.array[lastIndex];
 
@@ -87,10 +89,9 @@ class DynamicArray implements DynamicArrayInterface {
 	 * Resize the array to double its current capacity.
 	 * @returns {void}
 	 */
-	resize() {
+	resize(): void {
 		this.capacity = this.capacity * 2;
 
-		const lastIndex = this.capacity - 1;
 		const newArray = new Array(this.capacity);
 
 		this.array.forEach((element, index) => {
@@ -104,7 +105,7 @@ class DynamicArray implements DynamicArrayInterface {
 	 * Get the current size of the array.
 	 * @returns {number} - The current size.
 	 */
-	getSize() {
+	getSize(): number {
 		return this.size;
 	}
 
@@ -112,7 +113,7 @@ class DynamicArray implements DynamicArrayInterface {
 	 * Get the current capacity of the array.
 	 * @returns {number} - The current capacity.
 	 */
-	getCapacity() {
+	getCapacity(): number {
 		return this.capacity;
 	}
 }

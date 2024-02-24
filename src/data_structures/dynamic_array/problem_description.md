@@ -1,7 +1,5 @@
 # Design Dynamic Array (Resizable Array)
 
-Easy
-
 Design a Dynamic Array (aka a resizable array) class, such as an `ArrayList` in Java or a `vector` in C++.
 
 Your `DynamicArray` class should support the following operations:
@@ -41,8 +39,6 @@ Output:
 
 ```
 
-Copy
-
 Example 3:
 
 ```
@@ -53,8 +49,6 @@ Output:
 [null, 0, 1, null, 1, 1, null, 2, 2, 2, null, 3, 3, 1, 2]
 
 ```
-
-Copy
 
 Note:
 
