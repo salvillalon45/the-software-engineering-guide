@@ -9,10 +9,10 @@ interface DynamicArrayInterface {
  * Note: JavaScript arrays are dynamic by default,
  * but this class is used to simulate the behavior of a dynamic array.
  */
-class DynamicArray implements DynamicArrayInterface {
-	capacity: number;
-	array: Array<number | undefined>;
-	size: number;
+class DynamicArray {
+	private capacity: number;
+	private array: Array<number | undefined>;
+	private size: number;
 
 	/**
 	 * @constructor
@@ -115,6 +115,14 @@ class DynamicArray implements DynamicArrayInterface {
 	 */
 	getCapacity(): number {
 		return this.capacity;
+	}
+
+	/**
+	 * Get the current array.
+	 * @returns {Array<number | undefined>} - The current array.
+	 */
+	getArray(): Array<number | undefined> {
+		return this.array;
 	}
 }
 
