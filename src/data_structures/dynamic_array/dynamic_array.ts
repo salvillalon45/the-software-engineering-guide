@@ -1,9 +1,3 @@
-interface DynamicArrayInterface {
-	capacity: number;
-	array: Array<number | undefined>;
-	size: number;
-}
-
 /**
  * Dynamic Array Class
  * Note: JavaScript arrays are dynamic by default,
