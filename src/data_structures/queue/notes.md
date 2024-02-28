@@ -1,4 +1,4 @@
-# Stack in TypeScript/JavaScript
+# Queue in TypeScript/JavaScript
 
 # Summary and Implementation
 

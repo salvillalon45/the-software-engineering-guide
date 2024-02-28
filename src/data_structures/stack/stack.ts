@@ -31,7 +31,7 @@ class Stack<T> {
 		const topIndex = this.index - 1;
 		const topElement = this.stack[topIndex];
 
-		this.stack.splice(topIndex);
+		// this.stack.splice(topIndex);
 		this.index--;
 
 		return topElement;
@@ -66,6 +66,38 @@ class Stack<T> {
 	 */
 	isEmpty(): boolean {
 		return this.stack.length === 0;
+	}
+
+	/**
+	 * Return an array with all the values in the stack! We use this.index
+	 * to know where to start iterating from! We start iterating in reverse
+	 * to simulate what a stack looks like
+	 *
+	 * @return {Array<T>} Array of T values
+	 */
+	getValues(): Array<T> {
+		const values = [];
+
+		for (let i = this.index - 1; i >= 0; i--) {
+			const element = this.stack[i];
+			values.push(element);
+		}
+
+		return values;
+	}
+
+	/**
+	 * Helper to print the stack
+	 * @return {void}
+	 */
+	print(): void {
+		console.log('Printing the stack');
+		console.log('---------------------');
+		for (let i = this.index - 1; i >= 0; i--) {
+			const element = this.stack[i];
+			console.log({ index: i, element });
+		}
+		console.log('---------------------');
 	}
 }
 
