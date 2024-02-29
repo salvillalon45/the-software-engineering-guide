@@ -54,6 +54,24 @@ class Queue<T> {
 	}
 
 	/**
+	 * Return an array with all the values in the queue! We use this.index
+	 * to know where to start iterating from! We start iterating in reverse
+	 * to simulate what a stack looks like
+	 *
+	 * @return {Array<T>} Array of T values
+	 */
+	getQueue(): Array<T> {
+		const currentQueue = [];
+
+		for (let i = this.head; i < this.queue.length; i++) {
+			const element = this.queue[i];
+			currentQueue.push(element);
+		}
+
+		return currentQueue;
+	}
+
+	/**
 	 * Helper to print the queue
 	 * @return {void}
 	 */

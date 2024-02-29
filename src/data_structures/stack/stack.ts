@@ -75,15 +75,15 @@ class Stack<T> {
 	 *
 	 * @return {Array<T>} Array of T values
 	 */
-	getValues(): Array<T> {
-		const values = [];
+	getStack(): Array<T> {
+		const currentStack = [];
 
 		for (let i = this.index - 1; i >= 0; i--) {
 			const element = this.stack[i];
-			values.push(element);
+			currentStack.push(element);
 		}
 
-		return values;
+		return currentStack;
 	}
 
 	/**

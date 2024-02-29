@@ -1,46 +1,59 @@
 # Queue in TypeScript/JavaScript
 
-# Summary and Implementation
+# Summary
 
--   A stack is a fundamental data structure in computer science that follows the Last In, First Out (LIFO) principle. In a stack, the last element added is the first one to be removed. Think of it like a stack of plates in a cafeteria, where you can only take the top plate off the stack.
+A queue is a data structure that follows the **First In - First Out** principle. This means that the first element added to the queue will be the first one to be removed! Example: People waiting in line to pay for their groceries at a store! The person who arrives first will be served first!
 
--   Implemented a Stack class using TypeScript!
+Examples
+
+<div style='display: flex; gap: 1rem'>
+    <img src="./queue.png" alt="A visual of a queue with methods" width="300"/>
+    <img src="./person_queue.jpg" alt="A line of people" width="200"/>
+</div>
+
+## Implementation
+
+-   Implemented a generic Queue class using TypeScript!
 -   Learned how to setup a TypeScript project with nodemon!
 -   Includes the following **private** member variables
 
-    -   **index**: represents the current index for the next element to be pushed
-    -   **size**: variable represents the number of elements in the stack
-    -   **stack**: represents the data structure we will do the operations on
+        -   **head**: represents the first element in the queue. The one to be dequeued
+        -   **tail**: represents the last element in the queue. The one to be enqueued
+        -   **queue**: represents the data structure we will do the operations on
 
 -   Includes the following methods:
-    -   **push**: Adds an element to the stack and increments the index and size
-    -   **pop**: Removes and returns the top element of the stack.
-    -   **clear**: Clears the stack and resets the size and index.
-    -   **peek**: Return the element at the top of the stack without removing it.
-    -   **isEmpty**: Check if the stack is empty.
 
-## Notes
+    -   **enqueue**: Adds an element to the back of the queue
+    -   **dequeue**: Removes from the front of the queue.
+    -   **front**: Returns the element in the front of the queue.
+    -   **size**: Return totals element in the queue.
+    -   **isEmpty**: Check if the queue is empty.
+    -   **getQueue**: Get the current queue
 
--   To work with the stack I used an array. Instead of viewing the array from left to right, I viewed it from right to left. Where the rightmost position is the top of the stack!
--   By following that pattern, I did all the operations correctly
--   Also instead of using the built in methods of push and pop from Array JS class, I decided to use an index variable. The index represents the current index for the next element to be pushed.
--   Then to avoid have to use the `.length` method,
+-   Time & Space Complexity
+    -   **enqueue**:
+        -   Time O(1): since we are using the `this.tail` to place the element in the back of the queue
+        -   SpaceO(1): no new space created
+    -   **dequeue**:
+        -   Time O(1): since we are using the `this.head` to get the front element. Not actually looping
+        -   Space O(1): now new space created
+    -   **front**:
+        -   Time O(1): since we are using the `this.head` to get the front element. Not actually looping
+        -   Space O(1): now new space created
+    -   **size**:
+        -   Time O(1): subtracting `this.tail - this.head` is constant
+        -   Space O(1): now new space created
+    -   **isEmpty**:
+        -   Time O(1): it is constant
+        -   Space O(1): now new space created
+    -   **getQueue**:
+        -   Time O(N): Loop through the queue with N amount of elements
+        -   Space O(N): creates a new array with the elements of the queue
 
-## Interesting facts
+## Notes && Interesting facts
 
-### A size variable vs the .length property
+### Removing data from the queue
 
-I originally included a `size` variable since I thought the `.length` property of the JS Array class did an O(N) for time complexity, but it actually uses O(1). I think that internally they are using a `size` variable and they return the size everytime we call `.length`
+This happened in the stack as well. Instead of removing items from the queue, I can use the head pointer and move it to show where I want the queue to start printing.
 
-### Removing data from the stack
-
-As I was implementing the `pop` method, I wanted to also affect the stack and make sure that when I printed the stack the data was reflect.
-
-I will look at other implementations, but many did not physically remove the element.
-All they did was decrease the index (the index is used to know where to place the element in the stack)
-
-I realized that I can use the index to determine when to start printing! I do not need to remove an element, I can use the index to help!
-
-This Stack class creates an abstraction. Were we really are not removing elements, instead just moving a pointer to help us show the elements in the stack
-
-In the case a user ever wants to get all the values from the Stack. I created the `getValues` function that will return an array of the stack values
+I then created a `getQueue` function that will create a new array with all the values starting from where `this.head` points

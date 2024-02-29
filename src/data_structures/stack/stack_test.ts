@@ -13,4 +13,4 @@ stack.pop();
 console.log('----------------------');
 console.log('');
 
-console.log(stack.getValues());
+console.log(stack.getStack());

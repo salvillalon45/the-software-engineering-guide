@@ -8,8 +8,6 @@ queue.enqueue(1);
 queue.enqueue(2);
 queue.enqueue(3);
 queue.enqueue(4);
-// queue.print();
-console.log(queue);
 
 queue.dequeue();
 queue.print();
@@ -20,6 +18,7 @@ const frontElement = queue.front();
 const queueSize = queue.size();
 console.log(frontElement);
 console.log(queueSize);
-console.log(queue);
+
+console.log(queue.getQueue());
 console.log('----------------------');
 console.log('');

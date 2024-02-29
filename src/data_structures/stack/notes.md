@@ -13,11 +13,33 @@
     -   **stack**: represents the data structure we will do the operations on
 
 -   Includes the following methods:
+
     -   **push**: Adds an element to the stack and increments the index and size
     -   **pop**: Removes and returns the top element of the stack.
     -   **clear**: Clears the stack and resets the size and index.
     -   **peek**: Return the element at the top of the stack without removing it.
     -   **isEmpty**: Check if the stack is empty.
+    -   **getStack**: Get the current stack.
+
+-   Time & Space Complexity
+    -   **push**:
+        -   Time O(1): since we are using the `this.index` to place the element in the stack
+        -   SpaceO(1): no new space created
+    -   **pop**:
+        -   Time O(1): since we are using the `this.index` to get the top element.
+        -   Space O(1): now new space created
+    -   **clear**:
+        -   Time O(1): reseting everything
+        -   Space O(1): now new space created
+    -   **peek**:
+        -   Time O(1): it uses the `this.index` to return the first element in the stack
+        -   Space O(1): now new space created
+    -   **isEmpty**:
+        -   Time O(1): it is constant
+        -   Space O(1): now new space created
+    -   **getStack**:
+        -   Time O(N): Loop through the stack with N amount of elements
+        -   Space O(N): creates a new array with the elements of the stack
 
 ## Notes
 
@@ -43,4 +65,4 @@ I realized that I can use the index to determine when to start printing! I do no
 
 This Stack class creates an abstraction. Were we really are not removing elements, instead just moving a pointer to help us show the elements in the stack
 
-In the case a user ever wants to get all the values from the Stack. I created the `getValues` function that will return an array of the stack values
+In the case a user ever wants to get all the values from the Stack. I created the `getStack` function that will return an array of the stack values
