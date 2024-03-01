@@ -1,6 +1,7 @@
 class Stack<T> {
 	private stack: Array<T>;
 	private index: number;
+	private size: number;
 
 	/**
 	 * Constructor for creating a new instance of the Stack class.
@@ -9,6 +10,7 @@ class Stack<T> {
 	constructor() {
 		this.stack = new Array();
 		this.index = 0;
+		this.size = 0;
 	}
 
 	/**
@@ -20,6 +22,7 @@ class Stack<T> {
 	push(element: T): void {
 		this.stack[this.index] = element;
 		this.index++;
+		this.size++;
 	}
 
 	/**
@@ -31,7 +34,7 @@ class Stack<T> {
 		const topIndex = this.index - 1;
 		const topElement = this.stack[topIndex];
 
-		// this.stack.splice(topIndex);
+		this.size--;
 		this.index--;
 
 		return topElement;
@@ -45,6 +48,7 @@ class Stack<T> {
 	clear(): void {
 		this.stack = [];
 		this.index = 0;
+		this.size = 0;
 	}
 
 	/**
@@ -65,16 +69,19 @@ class Stack<T> {
 	 * @return {boolean} true if the stack is empty, false otherwise
 	 */
 	isEmpty(): boolean {
-		return this.stack.length === 0;
+		return this.size === 0;
 	}
 
 	/**
-	 * Return an array with all the values in the stack! We use this.index
-	 * to know where to start iterating from! We start iterating in reverse
-	 * to simulate what a stack looks like
+	 * Get the current stack
 	 *
 	 * @return {Array<T>} Array of T values
 	 */
+	/*
+		Return an array with all the values in the stack! We use this.index
+	 	to know where to start iterating from! We start iterating in reverse
+	 	to simulate what a stack looks like
+	*/
 	getStack(): Array<T> {
 		const currentStack = [];
 

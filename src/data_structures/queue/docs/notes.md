@@ -1,14 +1,14 @@
 # Queue in TypeScript/JavaScript
 
-# Summary
+## Summary
 
 A queue is a data structure that follows the **First In - First Out** principle. This means that the first element added to the queue will be the first one to be removed! Example: People waiting in line to pay for their groceries at a store! The person who arrives first will be served first!
 
 Examples
 
 <div style='display: flex; gap: 1rem'>
-    <img src="./queue.png" alt="A visual of a queue with methods" width="300"/>
-    <img src="./person_queue.jpg" alt="A line of people" width="200"/>
+    <img src="../images/queue.png" alt="A visual of a queue with methods" width="300"/>
+    <img src="../images/person_queue.jpg" alt="A line of people" width="200"/>
 </div>
 
 ## Implementation
@@ -35,7 +35,7 @@ Examples
         -   Time O(1): since we are using the `this.tail` to place the element in the back of the queue
         -   SpaceO(1): no new space created
     -   **dequeue**:
-        -   Time O(1): since we are using the `this.head` to get the front element. Not actually looping
+        -   Time O(1): since we are using the `this.head` to get the front element and incrementing `this.head` to change the current position of the queue. Not actually looping
         -   Space O(1): now new space created
     -   **front**:
         -   Time O(1): since we are using the `this.head` to get the front element. Not actually looping

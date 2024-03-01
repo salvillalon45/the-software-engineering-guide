@@ -1,4 +1,4 @@
-import Stack from './stack';
+import Stack from '../stack';
 
 console.log('Testing for Stack Class');
 console.log('----------------------');
@@ -9,8 +9,8 @@ console.log({ stack });
 stack.push('2');
 stack.push('3');
 stack.pop();
-// stack.print();
+stack.pop();
+stack.print();
+console.log('is the stack empty? ', stack.isEmpty());
 console.log('----------------------');
 console.log('');
-
-console.log(stack.getStack());

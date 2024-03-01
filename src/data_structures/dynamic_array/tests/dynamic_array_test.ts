@@ -1,4 +1,4 @@
-import DynamicArray from './dynamic_array';
+import DynamicArray from '../dynamic_array';
 
 console.log('---------------------------------');
 console.log('');

@@ -11,3 +11,10 @@ Your `Stack` class should support the following operations:
 -   `clear` Clears the stack.
 -   `peek` Return the element at the top of the stack without removing it.
 -   `isEmpty` Check if the stack is empty.
+-   `getStack` To get the current stack
+
+Will need the following private variables:
+
+-   `index`: represents the current index for the next element to be pushed
+-   `size`: variable represents the number of elements in the stack
+-   `stack`: represents the data structure we will do the operations on

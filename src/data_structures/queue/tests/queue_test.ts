@@ -1,4 +1,4 @@
-import Queue from './queue';
+import Queue from '../queue';
 
 console.log('Testing for Queue Class');
 console.log('----------------------');
