@@ -20,13 +20,17 @@ class LinkedList<T> {
 	}
 
 	insertHead(val: T) {
-		if (this.head === null) {
-			const newNode = new Node(val, null);
+		const newNode = new Node(val, null);
 
+		if (this.head === null) {
 			this.head = newNode;
 			this.tail = newNode;
 
 			this.length++;
+		} else {
+			const previousHead = this.head;
+			this.head = newNode;
+			newNode.next = previousHead;
 		}
 	}
 
