@@ -1,3 +1,8 @@
+/**
+ * A class representing a Node in the Linked List
+ * @class
+ * @template T - The type of data stored in the node.
+ */
 class Node<T> {
 	public data: T;
 	public next: Node<T> | null;
@@ -8,51 +13,71 @@ class Node<T> {
 	}
 }
 
+/**
+ * A class representing a Linked List
+ * @class
+ * @template T - The type of data stored in the linked list.
+ */
 class LinkedList<T> {
 	private head: Node<T> | null;
 	private tail: Node<T> | null;
-	private length: number;
+	private _length: number;
 
 	constructor() {
 		this.head = null;
 		this.tail = null;
-		this.length = 0;
+		this._length = 0;
 	}
 
-	insertHead(val: T) {
+	/**
+	 * Insert a new node in the head/start of the Linked List
+	 * @param {T} val - the element to be added to head/start of the Linked List
+	 * @return {void}
+	 */
+	insertHead(val: T): void {
 		const newNode = new Node(val, null);
 
 		if (this.head === null) {
 			this.head = newNode;
 			this.tail = newNode;
-
-			this.length++;
 		} else {
 			const previousHead = this.head;
 			this.head = newNode;
 			newNode.next = previousHead;
 		}
+
+		this._length++;
 	}
 
-	insertTail(val: T) {
+	/**
+	 * Insert a new node in the tail/end of the Linked List
+	 * @param {T} val - the element to be added to tail/end of the Linked List
+	 * @return {void}
+	 */
+	insertTail(val: T): void {
 		const newNode = new Node(val, null);
-		console.log({ newNode });
+
 		if (this.tail === null) {
 			this.tail = newNode;
 			this.head = newNode;
 		} else {
 			const previousNode = this.tail as Node<T>;
-			console.log({ previousNode });
 			previousNode.next = newNode;
-
 			this.tail = newNode;
 		}
 
-		this.length++;
+		this._length++;
 	}
 
+	/**
+	 * Get a node at a specified index. If the index is out of bounds,
+	 * it will return a negative one
+	 * @param {number} i - Index to search for
+	 * @return {number | T} Either a negative one for index out of bounds,
+	 *  or the data that the node stores at the index
+	 */
 	get(i: number): number | T {
-		if (this.getLength() - 1 < i) {
+		if (this._length - 1 < i) {
 			// The i is out of bounds
 			return -1;
 		}
@@ -74,8 +99,13 @@ class LinkedList<T> {
 		return -1;
 	}
 
+	/**
+	 * Remove a node at a specified index. If the index is out of bounds, it will return a false
+	 * @param {number} i - Index to remove node
+	 * @return {boolean} A boolean checking if the operation was successful or not
+	 */
 	remove(i: number): boolean {
-		if (this.getLength() - 1 < i) {
+		if (this._length - 1 < i) {
 			// The i is out of bounds
 			return false;
 		}
@@ -84,7 +114,7 @@ class LinkedList<T> {
 			// if they are trying to remove the first node
 			// All we need is to change this.head to point to the next one
 			this.head = this.head?.next as Node<T>;
-			this.length--;
+			this._length--;
 			return true;
 		}
 
@@ -96,18 +126,8 @@ class LinkedList<T> {
 			if (searchIndex === i) {
 				const nextNode = currentNode.next;
 				previousNode.next = nextNode;
-				this.length--;
+				this._length--;
 				// Need to change this.tail to point to the first node, since there are not other nodes!
-				const tail = this.tail;
-				const head = this.head;
-
-				console.log({
-					currentNode,
-					nextNode,
-					previousNode,
-					tail,
-					head
-				});
 
 				if (previousNode.next === null) {
 					this.tail = this.head;
@@ -124,9 +144,13 @@ class LinkedList<T> {
 		return false;
 	}
 
-	getValues(): Array<T> {
+	/**
+	 * Convert the Linked List into an Array
+	 * @return {Array<T>} An Array representing the Linked List
+	 */
+	toArray(): Array<T> {
+		const linkedListArray: Array<T> = [];
 		let currentNode = this.head;
-		const linkedListArray: Array<T> = new Array();
 
 		while (currentNode !== null) {
 			const { data } = currentNode;
@@ -137,26 +161,18 @@ class LinkedList<T> {
 		return linkedListArray;
 	}
 
-	add(data: T) {
-		let currentNode = this.head;
-
-		// here the nullish coalesing and optional chaining are included
-		// due to typescript error warnings, not really needed for LinkedList
-		// functionality
-		while (currentNode?.next !== null) {
-			currentNode = currentNode?.next ?? null;
-		}
-
-		const newNode = new Node(data, null);
-		currentNode.next = newNode;
-		this.tail = newNode;
-		this.length++;
+	/**
+	 * Get the length of the Linked List
+	 * @return {number} Total count of nodes in the Linked List
+	 */
+	get length(): number {
+		return this._length;
 	}
 
-	getLength() {
-		return this.length;
-	}
-
+	/**
+	 * Helper to print the Linked List
+	 * @return {void}
+	 */
 	print(): void {
 		console.log('Printing the LinkedList');
 		console.log('---------------------');
@@ -166,25 +182,13 @@ class LinkedList<T> {
 
 		while (currentNode !== null) {
 			const { data } = currentNode;
-
 			console.log({ index, data });
-			const tail = this.tail;
-			const head = this.head;
-
-			console.log({
-				currentNode,
-
-				tail,
-				head
-			});
-
 			currentNode = currentNode.next;
 			index++;
 		}
 
 		console.log('');
-		console.log('Current length of LinkedList:: ', this.getLength());
-
+		console.log('Current length of LinkedList:: ', this._length);
 		console.log('---------------------');
 	}
 }
