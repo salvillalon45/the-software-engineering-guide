@@ -19,7 +19,7 @@ Additionally, you need to implement a `print` method to display the elements of 
 3.  Pay attention to efficient handling of edge cases, such as attempting to dequeue from an empty queue.
 4.  Write a series of test cases to validate the correctness of your implementation.
 
-## Example
+## Example Usage
 
 ```
 const myQueue = new Queue();

@@ -1,37 +1,57 @@
-# Design a Linked List
+# Design a Singly Linked List
 
 ## Problem Description
 
-You are tasked with implementing a basic queue data structure in TypeScript/JavaScript of your choice. The queue should support the following operations:
+In this assignment, you will be tasked with implementing a basic linked list data structure in TypeScript. Linked lists are fundamental data structures consisting of a sequence of elements (nodes), where each node points to the next node in the sequence. Your implementation should include functionalities to insert elements at the head and tail of the linked list, remove elements from specified positions, retrieve elements at given indices, and convert the linked list into an array.
 
-1.  Enqueue: Add an element to the end of the queue.
-2.  Dequeue: Remove and return the element from the front of the queue.
-3.  Front: Return the element at the front of the queue without removing it.
-4.  isEmpty: Return true if the queue is empty, false otherwise.
-5.  Size: Return the number of elements currently in the queue.
+## Class Structure:
 
-Additionally, you need to implement a `print` method to display the elements of the queue.
+### Node Class:
 
-## Requirements
+-   Create a Node class to represent individual elements in the linked list.
+-   Each node should contain two properties: data, which stores the value of the node, and next, a reference to the next node in the sequence.
 
-1.  The implementation should be in a class named `Queue`.
-2.  Use an array to store the elements internally.
-3.  Pay attention to efficient handling of edge cases, such as attempting to dequeue from an empty queue.
-4.  Write a series of test cases to validate the correctness of your implementation.
+### Linked List Class:
 
-## Example
+-   Implement a LinkedList class to manage the linked list.
+-   It should contain properties to keep track of the head and tail nodes, as well as the length of the linked list.
+-   Implement methods to:
+    -   **insertHead**: Insert a new node at the head of the linked list.
+    -   **insertTail**: Insert a new node at the tail of the linked list.
+    -   **remove**: Remove a node at a specified index.
+    -   **get**: Retrieve the value of a node at a given index.
+    -   **toArray**: Convert the linked list into an array.
+    -   **length**: Get the length of the linked list.
+
+## Requirements:
+
+1. Implement the Node and LinkedList classes according to the provided specifications.
+2. Ensure that the linked list behaves correctly when adding, removing, and retrieving elements.
+3. Test your implementation thoroughly using various test cases to validate its functionality.
+4. Use TypeScript syntax and adhere to best practices for code readability and maintainability.
+
+## Example Usage:
 
 ```
-const myQueue = new Queue();
-myQueue.enqueue(1);
-myQueue.enqueue(2);
-myQueue.enqueue(3);
+// Sample usage of the implemented linked list
 
-console.log("Front:", myQueue.front()); // Should print 1
-console.log("Size:", myQueue.size()); // Should print 3
+const list = new LinkedList<number>();
 
-console.log("Dequeue:", myQueue.dequeue()); // Should print 1
-console.log("Size:", myQueue.size()); // Should print 2
+list.insertHead(10);
 
-myQueue.print(); // Should print the remaining elements in the queue
+list.insertTail(20);
+
+list.insertTail(30);
+
+list.print(); // Output: 10 -> 20 -> 30
+
+console.log(list.get(1)); // Output: 20
+
+list.remove(1);
+
+list.print(); // Output: 10 -> 30
+
+console.log(list.toArray()); // Output: [10, 30]
+
+console.log(list.getLength()); // Output: 2
 ```

@@ -70,42 +70,12 @@ class LinkedList<T> {
 	}
 
 	/**
-	 * Get a node at a specified index. If the index is out of bounds,
-	 * it will return a negative one
-	 * @param {number} i - Index to search for
-	 * @return {number | T} Either a negative one for index out of bounds,
-	 *  or the data that the node stores at the index
-	 */
-	get(i: number): number | T {
-		if (this._length - 1 < i) {
-			// The i is out of bounds
-			return -1;
-		}
-
-		let currentNode = this.head;
-		let searchIndex = 0;
-
-		while (currentNode !== null) {
-			const { data } = currentNode;
-
-			if (searchIndex === i) {
-				return data;
-			}
-
-			currentNode = currentNode.next;
-			searchIndex++;
-		}
-
-		return -1;
-	}
-
-	/**
 	 * Remove a node at a specified index. If the index is out of bounds, it will return a false
 	 * @param {number} i - Index to remove node
 	 * @return {boolean} A boolean checking if the operation was successful or not
 	 */
 	remove(i: number): boolean {
-		if (this._length - 1 < i) {
+		if (this._length - 1 < i || i < 0) {
 			// The i is out of bounds
 			return false;
 		}
@@ -114,7 +84,17 @@ class LinkedList<T> {
 			// if they are trying to remove the first node
 			// All we need is to change this.head to point to the next one
 			this.head = this.head?.next as Node<T>;
+
+			if (this._length === 1) {
+				/*
+					If the node that we removed was the only node in the list
+					update the tail to null
+				*/
+				this.tail = null;
+			}
+
 			this._length--;
+
 			return true;
 		}
 
@@ -142,6 +122,36 @@ class LinkedList<T> {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Get a node at a specified index. If the index is out of bounds,
+	 * it will return a negative one
+	 * @param {number} i - Index to search for
+	 * @return {number | T} Either a negative one for index out of bounds,
+	 *  or the data that the node stores at the index
+	 */
+	get(i: number): number | T {
+		if (this._length - 1 < i || i < 0) {
+			// The i is out of bounds
+			return -1;
+		}
+
+		let currentNode = this.head;
+		let searchIndex = 0;
+
+		while (currentNode !== null) {
+			const { data } = currentNode;
+
+			if (searchIndex === i) {
+				return data;
+			}
+
+			currentNode = currentNode.next;
+			searchIndex++;
+		}
+
+		return -1;
 	}
 
 	/**
