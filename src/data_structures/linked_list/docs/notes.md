@@ -38,6 +38,7 @@ Examples
     -   **get**: Retrieve the value of a node at a given index.
     -   **toArray**: Convert the linked list into an array.
     -   **length**: Get the length of the linked list.
+    -   **print**: Helper to print the linked list
 
 -   Time & Space Complexity
     -   **insertHead**:
@@ -53,16 +54,15 @@ Examples
         -   Time O(N): looping through the list until we reach the designated node
         -   Space O(1): now new space created
     -   **toArray**:
-        -   Time O(N): looping through through every node in the list and pushing the data property on each node and pushing it into an array
+        -   Time O(N): looping through each node in the list and pushing the data property on each node and pushing it into an array
         -   Space O(1): now new space created
     -   **length**:
         -   Time O(1): returning the total length of the list
         -   Space O(1): now new space created
+    -   **print**:
+        -   Time O(N): looping through each node
+        -   Space O(1): now new space created
 
 ## Notes && Interesting facts
 
-### Removing data from the queue
-
-This happened in the stack as well. Instead of removing items from the queue, I can use the head pointer and move it to show where I want the queue to start printing.
-
-I then created a `getQueue` function that will create a new array with all the values starting from where `this.head` points
+This was a good exercise to remember how Linked List work. A good reminder on pointers and

@@ -70,6 +70,67 @@ class LinkedList<T> {
 	}
 
 	/**
+	 * Insert a new node in the tail/end of the Linked List
+	 * @param {number} index - the index to insert the element at
+	 * @param {data} T - the data to create the new node with
+	 * @return {boolean} - true if successful operation, false otherwise
+	 */
+	insertAt(index: number, data: T): boolean {
+		console.log('index to insert::', index);
+		console.log('index to insert::', this._length);
+
+		/*
+		 Take a look at out of bounds
+		*/
+
+		if (index < 0 || index > this._length - 1) {
+			console.log('out of bongs');
+			return false;
+		}
+
+		// if (this.head === null && this.tail === null) {
+		if (this._length === 0) {
+			// First element to add in list
+			this.insertHead(data);
+			return true;
+		}
+
+		if (index === 0) {
+			// Inserting at the start/head of the list
+			this.insertHead(data);
+			return true;
+		}
+
+		// if (index === this._length - 1) {
+		if (index === this._length) {
+			// Inserting at the end/tail of the list
+			this.insertTail(data);
+			return true;
+		}
+
+		// Inserting in the middle of the list
+		console.log('Inserting in the middle of the list');
+		let searchIndex = 0;
+		let currentNode = this.head;
+		let previousNode = this.head as Node<T>;
+		const newNode = new Node(data, null);
+
+		while (currentNode !== null) {
+			if (searchIndex === index) {
+				previousNode.next = newNode;
+				newNode.next = currentNode;
+				return true;
+			}
+
+			searchIndex++;
+			previousNode = currentNode;
+			currentNode = currentNode.next;
+		}
+
+		return false;
+	}
+
+	/**
 	 * Remove a node at a specified index. If the index is out of bounds, it will return a false
 	 * @param {number} i - Index to remove node
 	 * @return {boolean} A boolean checking if the operation was successful or not
