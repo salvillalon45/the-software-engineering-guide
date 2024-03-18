@@ -34,6 +34,7 @@ Examples
 
     -   **insertHead**: Insert a new node at the head of the linked list.
     -   **insertTail**: Insert a new node at the tail of the linked list.
+    -   **insertAt**: Insert a new node at a given index.
     -   **remove**: Remove a node at a specified index.
     -   **get**: Retrieve the value of a node at a given index.
     -   **toArray**: Convert the linked list into an array.
@@ -46,6 +47,9 @@ Examples
         -   SpaceO(1): no new space created
     -   **insertTail**:
         -   Time O(1): moving the pointers to point at different nodes
+        -   Space O(1): now new space created
+    -   **insertAt**:
+        -   Time O(N): if the node is between the head or tail, we will need to loop until the index is found
         -   Space O(1): now new space created
     -   **remove**:
         -   Time O(N): looping through the list until we reach the designated node

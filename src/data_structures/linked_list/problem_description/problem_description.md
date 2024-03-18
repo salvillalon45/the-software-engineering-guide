@@ -18,6 +18,7 @@ In this assignment, you will be tasked with implementing a basic linked list dat
 -   Implement methods to:
     -   **insertHead**: Insert a new node at the head of the linked list.
     -   **insertTail**: Insert a new node at the tail of the linked list.
+    -   **insertAt**: Insert a new node at a given index.
     -   **remove**: Remove a node at a specified index.
     -   **get**: Retrieve the value of a node at a given index.
     -   **toArray**: Convert the linked list into an array.

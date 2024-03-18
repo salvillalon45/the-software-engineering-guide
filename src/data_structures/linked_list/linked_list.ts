@@ -76,40 +76,24 @@ class LinkedList<T> {
 	 * @return {boolean} - true if successful operation, false otherwise
 	 */
 	insertAt(index: number, data: T): boolean {
-		console.log('index to insert::', index);
-		console.log('index to insert::', this._length);
-
-		/*
-		 Take a look at out of bounds
-		*/
-
-		if (index < 0 || index > this._length - 1) {
-			console.log('out of bongs');
+		if (index !== 0 && (index < 0 || index > this._length - 1)) {
+			// Out of bounds
 			return false;
 		}
 
-		// if (this.head === null && this.tail === null) {
-		if (this._length === 0) {
+		if (this._length === 0 || index === 0) {
 			// First element to add in list
 			this.insertHead(data);
 			return true;
 		}
 
-		if (index === 0) {
-			// Inserting at the start/head of the list
-			this.insertHead(data);
-			return true;
-		}
-
-		// if (index === this._length - 1) {
-		if (index === this._length) {
+		if (index === this._length - 1) {
 			// Inserting at the end/tail of the list
 			this.insertTail(data);
 			return true;
 		}
 
 		// Inserting in the middle of the list
-		console.log('Inserting in the middle of the list');
 		let searchIndex = 0;
 		let currentNode = this.head;
 		let previousNode = this.head as Node<T>;
@@ -250,14 +234,22 @@ class LinkedList<T> {
 
 		let currentNode = this.head;
 		let index = 0;
+		let result = '';
 
 		while (currentNode !== null) {
 			const { data } = currentNode;
 			console.log({ index, data });
 			currentNode = currentNode.next;
+
+			if (index + 1 === this._length) {
+				result = data + '->' + result;
+			} else {
+				result = result + data;
+			}
+
 			index++;
 		}
-
+		console.log(result);
 		console.log('');
 		console.log('Current length of LinkedList:: ', this._length);
 		console.log('---------------------');
