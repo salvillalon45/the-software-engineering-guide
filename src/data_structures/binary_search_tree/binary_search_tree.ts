@@ -27,34 +27,44 @@ class BinarySearchTree<T> {
 		this.root = null;
 	}
 
-	add(newData: T): boolean {
-		const newNode = new Node(newData);
-
-		function addHelper(currentNode: Node<T> | null) {
-			console.log('inside addHelper');
-			const currentNodeValue = currentNode?.value as T;
-			console.log({ currentNode, currentNodeValue });
-
-			if (currentNode === null) {
-				console.log('currentNode is null');
-				currentNode = newNode;
-				return true;
-			}
-			if (newData < currentNodeValue) {
-				console.log(currentNode);
-				const leftNode = currentNode?.left as Node<T>;
-				addHelper(leftNode);
-			}
-		}
+	add(newValue: T): boolean {
+		const newNode = new Node(newValue);
 
 		if (this.root === null) {
+			// First node in tree
 			this.root = newNode;
 			return true;
-		} else {
-			addHelper(this.root);
 		}
 
-		return false;
+		// If there is already a node in the tree
+		let currentNode = this.root;
+
+		while (currentNode !== null) {
+			const { value: currentNodeValue } = currentNode;
+
+			if (currentNodeValue === newValue) {
+				// Value already exists
+				return false;
+			} else if (newValue < currentNodeValue) {
+				// Go Left
+				if (currentNode.left === null) {
+					currentNode.left = newNode;
+					break;
+				} else {
+					currentNode = currentNode.left;
+				}
+			} else if (newValue > currentNodeValue) {
+				// Go Right
+				if (currentNode.right === null) {
+					currentNode.right = newNode;
+					break;
+				} else {
+					currentNode = currentNode.right;
+				}
+			}
+		}
+
+		return true;
 	}
 
 	/**
