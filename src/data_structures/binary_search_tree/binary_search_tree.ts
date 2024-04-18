@@ -119,27 +119,39 @@ class BinarySearchTree<T> {
 		return false;
 	}
 
-	isBinarySearchTree(tree: Node<T> | null) {
-		let currentNode = tree;
+	// isBinarySearchTree(tree: Node<T> | null): boolean {
+	// 	let currentNode = tree;
+	// 	let leftNode = currentNode?.left ?? null;
+	// 	let rightNode = currentNode?.right ?? null;
+	// 	// console.log({ currentNode, leftNode, rightNode });
 
-		function isBinarySearchTreeHelper(currentNode: Node<T> | null) {
-			const currentValue = currentNode?.value as T;
-			const leftValue = currentNode?.left?.value as T;
-			const rightValue = currentNode?.right?.value as T;
+	// 	if (leftNode !== null) {
+	// 		let currentValue = currentNode?.value as T;
+	// 		let leftValue = currentNode?.left?.value as T;
+	// 		console.log({ currentValue, leftValue });
+	// 		if (!(leftValue < currentValue)) {
+	// 			// Not in order
+	// 			return false;
+	// 		} else {
+	// 			let res = this.isBinarySearchTree(leftNode);
+	// 			console.log(res);
+	// 		}
+	// 	}
+	// 	if (rightNode !== null) {
+	// 		let currentValue = currentNode?.value as T;
+	// 		let rightValue = currentNode?.right?.value as T;
+	// 		console.log({ currentValue, rightValue });
 
-			if (!(leftValue < currentValue && currentValue < rightValue)) {
-				console.log('not a tree');
-				return false;
-			}
-			const leftNode = currentNode?.left ?? null;
-			const rightNode = currentNode?.right ?? null;
+	// 		if (!(currentValue <= rightValue)) {
+	// 			// Not in order
+	// 			return false;
+	// 		} else {
+	// 			return this.isBinarySearchTree(rightNode);
+	// 		}
+	// 	}
 
-			isBinarySearchTreeHelper(leftNode);
-			isBinarySearchTreeHelper(rightNode);
-		}
-
-		isBinarySearchTreeHelper(currentNode);
-	}
+	// 	return true;
+	// }
 
 	/**
 	 * Helper to print the Linked List
@@ -148,6 +160,90 @@ class BinarySearchTree<T> {
 	print(): void {
 		console.log(JSON.stringify(this.root, null, 2));
 	}
+}
+
+interface TreeNode {
+	value: number;
+	left: TreeNode | null;
+	right: TreeNode | null;
+}
+
+// export function isBinarySearchTree(tree: TreeNode | null): boolean {
+// 	let currentNode = tree;
+// 	let leftNode = currentNode?.left ?? null;
+// 	let rightNode = currentNode?.right ?? null;
+
+// 	console.log({ currentNode, leftNode, rightNode });
+
+// 	if (tree === null) {
+// 		return true; // An empty tree is considered a valid BST
+// 	}
+
+// 	if (leftNode !== null) {
+// 		console.log('going to check for left');
+// 		let currentValue = currentNode?.value as number;
+// 		let leftValue = currentNode?.left?.value as number;
+// 		console.log({ currentValue, leftValue });
+
+// 		if (!(leftValue < currentValue)) {
+// 			// Not in order
+// 			console.log('left node not in order!');
+// 			return false;
+// 		} else {
+// 			console.log('go further on left node!');
+// 			let res = isBinarySearchTree(leftNode);
+// 			console.log('res is ', res);
+
+// 			// return res;
+// 		}
+// 	}
+
+// 	if (rightNode !== null) {
+// 		console.log('going to check for right');
+// 		let currentValue = currentNode?.value as Number;
+// 		let rightValue = currentNode?.right?.value as Number;
+// 		console.log({ currentValue, rightValue });
+
+// 		if (!(currentValue <= rightValue)) {
+// 			// Not in order
+// 			return false;
+// 		} else {
+// 			console.log('go further on right node!');
+// 			let res = isBinarySearchTree(rightNode);
+// 			console.log('res is ', res);
+// 			// return isBinarySearchTree(rightNode);
+// 		}
+// 	}
+
+// 	console.log('In order, return true');
+// 	return true;
+// }
+
+export function isBinarySearchTree(tree: TreeNode): boolean {
+	function valid(
+		node: TreeNode | null,
+		left: number,
+		right: number
+	): boolean {
+		if (node === null) {
+			return false;
+		}
+
+		let currentValue = node.value;
+		// let rightValue = right.value;
+		// let leftValue = left.value;
+
+		if (!(currentValue < right && currentValue > left)) {
+			return false;
+		}
+
+		return (
+			valid(node.left, left, node.value) &&
+			valid(node.right, node.value, right)
+		);
+	}
+
+	return valid(tree, -Infinity, Infinity);
 }
 
 export default BinarySearchTree;
