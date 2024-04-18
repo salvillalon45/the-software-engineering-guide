@@ -226,14 +226,15 @@ export function isBinarySearchTree(tree: TreeNode): boolean {
 		right: number
 	): boolean {
 		if (node === null) {
-			return false;
+			// An empty tree is a valid BST
+			return true;
 		}
 
 		let currentValue = node.value;
-		// let rightValue = right.value;
-		// let leftValue = left.value;
 
 		if (!(currentValue < right && currentValue > left)) {
+			// Here check if the value are in correct order, if
+			// not then return false!
 			return false;
 		}
 

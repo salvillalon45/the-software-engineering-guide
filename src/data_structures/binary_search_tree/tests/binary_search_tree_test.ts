@@ -6,32 +6,31 @@ const bst = new BinarySearchTree<number>();
 // bst.add(40);
 // bst.add(20);
 // bst.add(70);
-// console.log('What is the min value of tree:: ', bst.findMin());
-// console.log('What is the min value of tree:: ', bst.isPresent(0));
-let tree = {
-	root: {
-		value: 10,
-		left: {
-			value: 2,
-			left: null,
-			// left: {
-			// 	value: 1,
-			// 	left: null,
-			// 	right: null
-			// },
-			right: {
-				value: 3,
-				left: null,
-				right: null
-			}
-		},
-		right: {
-			value: 90,
-			left: null,
-			right: null
-		}
-	}
-};
+
+// let tree = {
+// 	root: {
+// 		value: 10,
+// 		left: {
+// 			value: 2,
+// 			left: null,
+// 			// left: {
+// 			// 	value: 1,
+// 			// 	left: null,
+// 			// 	right: null
+// 			// },
+// 			right: {
+// 				value: 3,
+// 				left: null,
+// 				right: null
+// 			}
+// 		},
+// 		right: {
+// 			value: 90,
+// 			left: null,
+// 			right: null
+// 		}
+// 	}
+// };
 // let tree = {
 // 	root: {
 // 		value: 1,
