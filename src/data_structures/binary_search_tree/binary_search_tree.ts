@@ -119,40 +119,6 @@ class BinarySearchTree<T> {
 		return false;
 	}
 
-	// isBinarySearchTree(tree: Node<T> | null): boolean {
-	// 	let currentNode = tree;
-	// 	let leftNode = currentNode?.left ?? null;
-	// 	let rightNode = currentNode?.right ?? null;
-	// 	// console.log({ currentNode, leftNode, rightNode });
-
-	// 	if (leftNode !== null) {
-	// 		let currentValue = currentNode?.value as T;
-	// 		let leftValue = currentNode?.left?.value as T;
-	// 		console.log({ currentValue, leftValue });
-	// 		if (!(leftValue < currentValue)) {
-	// 			// Not in order
-	// 			return false;
-	// 		} else {
-	// 			let res = this.isBinarySearchTree(leftNode);
-	// 			console.log(res);
-	// 		}
-	// 	}
-	// 	if (rightNode !== null) {
-	// 		let currentValue = currentNode?.value as T;
-	// 		let rightValue = currentNode?.right?.value as T;
-	// 		console.log({ currentValue, rightValue });
-
-	// 		if (!(currentValue <= rightValue)) {
-	// 			// Not in order
-	// 			return false;
-	// 		} else {
-	// 			return this.isBinarySearchTree(rightNode);
-	// 		}
-	// 	}
-
-	// 	return true;
-	// }
-
 	/**
 	 * Helper to print the Linked List
 	 * @return {void}
@@ -167,57 +133,6 @@ interface TreeNode {
 	left: TreeNode | null;
 	right: TreeNode | null;
 }
-
-// export function isBinarySearchTree(tree: TreeNode | null): boolean {
-// 	let currentNode = tree;
-// 	let leftNode = currentNode?.left ?? null;
-// 	let rightNode = currentNode?.right ?? null;
-
-// 	console.log({ currentNode, leftNode, rightNode });
-
-// 	if (tree === null) {
-// 		return true; // An empty tree is considered a valid BST
-// 	}
-
-// 	if (leftNode !== null) {
-// 		console.log('going to check for left');
-// 		let currentValue = currentNode?.value as number;
-// 		let leftValue = currentNode?.left?.value as number;
-// 		console.log({ currentValue, leftValue });
-
-// 		if (!(leftValue < currentValue)) {
-// 			// Not in order
-// 			console.log('left node not in order!');
-// 			return false;
-// 		} else {
-// 			console.log('go further on left node!');
-// 			let res = isBinarySearchTree(leftNode);
-// 			console.log('res is ', res);
-
-// 			// return res;
-// 		}
-// 	}
-
-// 	if (rightNode !== null) {
-// 		console.log('going to check for right');
-// 		let currentValue = currentNode?.value as Number;
-// 		let rightValue = currentNode?.right?.value as Number;
-// 		console.log({ currentValue, rightValue });
-
-// 		if (!(currentValue <= rightValue)) {
-// 			// Not in order
-// 			return false;
-// 		} else {
-// 			console.log('go further on right node!');
-// 			let res = isBinarySearchTree(rightNode);
-// 			console.log('res is ', res);
-// 			// return isBinarySearchTree(rightNode);
-// 		}
-// 	}
-
-// 	console.log('In order, return true');
-// 	return true;
-// }
 
 export function isBinarySearchTree(tree: TreeNode): boolean {
 	function valid(
@@ -234,13 +149,13 @@ export function isBinarySearchTree(tree: TreeNode): boolean {
 
 		if (!(currentValue < right && currentValue > left)) {
 			// Here check if the value are in correct order, if
-			// not then return false!
+			// not then return false
 			return false;
 		}
 
 		return (
-			valid(node.left, left, node.value) &&
-			valid(node.right, node.value, right)
+			valid(node.left, left, currentValue) &&
+			valid(node.right, currentValue, right)
 		);
 	}
 
