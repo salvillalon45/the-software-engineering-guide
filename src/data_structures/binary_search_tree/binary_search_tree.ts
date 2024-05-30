@@ -119,6 +119,68 @@ class BinarySearchTree<T> {
 		return false;
 	}
 
+	inOrderTraversalCount(): Array<number> {
+		const inorderNodes: Array<number> = [];
+
+		// function inOrderTraversalHelper(node: Node<T> | null, count: number) {
+		// 	if (node === null) {
+		// 		return;
+		// 	} else {
+		// 		count += 1;
+		// 		inOrderTraversalHelper(node.left, count);
+		// 		const nodeValue = node.value as number;
+		// 		inorderNodes.push(nodeValue);
+		// 		inOrderTraversalHelper(node.right, count);
+		// 	}
+		// }
+
+		function inOrderTraversalHelper(node: Node<number> | null): number {
+			if (node === null) {
+				return 0;
+			} else {
+				return (
+					1 +
+					inOrderTraversalHelper(node.left) +
+					inOrderTraversalHelper(node.right)
+				);
+			}
+		}
+
+		inOrderTraversalHelper(this.root);
+		console.log({ inorderNodes }, inorderNodes.length);
+
+		return inorderNodes;
+	}
+
+	// findMaxHeight(): number {
+	// 	if (this.root === null) {
+	// 		// Return 0 if tree is empty
+	// 		return -1;
+	// 	} else {
+	// 		const inorderNodes = this.inOrderTraversal();
+	// 		const totalNodes = inorderNodes.length;
+	// 		const maxHeight = totalNodes - 1;
+	// 		return maxHeight;
+	// 	}
+	// }
+
+	// findMinHeight(): number {
+	// 	if (this.root === null) {
+	// 		// Return 0 if tree is empty
+	// 		return -1;
+	// 	} else {
+	// 		const inorderNodes = this.inOrderTraversal();
+	// 		const totalNodes = inorderNodes.length;
+	// 		const minimumHeight = Math.log2(totalNodes);
+	// 		return minimumHeight;
+	// 	}
+	// }
+
+	// isBalanced(): boolean {
+	// 	const result = this.findMaxHeight() - this.findMinHeight();
+	// 	return result <= 1;
+	// }
+
 	/**
 	 * Helper to print the Linked List
 	 * @return {void}

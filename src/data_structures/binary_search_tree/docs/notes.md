@@ -2,7 +2,77 @@
 
 ## Summary
 
-A Linked List is a linear data structure consisting of a sequence of elements, called nodes. Each node contains a reference (or link) to the next node in the sequence. Unlike arrays, linked list do not store elements in contiguous memory locations. They use pointers to connect node together.
+### Intro
+
+A Binary Search Tree (a.k.a BST) is a specialized type of binary tree that maintains sorted order among its elements.
+
+-   This makes searching for an element more efficient! Better than searching in a regular binary tree
+
+-   Key Characteristics
+
+    -   Node Structure - Each node in BST has
+        -   a value
+        -   A reference to the left child
+        -   A reference to the right child
+    -   Ordering Property - For any node with value N:
+        -   All values in the left subtree are less than N.
+        -   All values in the right subtree are greater than N.
+
+-   Traversing a BST
+
+    -   In-order Traversal: Visit the left subtree, the node, and then the right subtree. This results in visiting the nodes in ascending order.
+    -   Pre-order Traversal: Visit the node, the left subtree, and then the right subtree.
+    -   Post-order Traversal: Visit the left subtree, the right subtree, and then the node.
+
+-   Advantages:
+    -   Efficiency: Searching, inserting, and deleting can be done in O(log n) time on average if the tree is **balanced**.
+    -   Ordered Structure: The in-order traversal of a BST yields the elements in a sorted sequence.
+
+### What is an Unbalanced Binary Search Tree?
+
+If the tree becomes unbalanced (e.g., all elements are inserted in ascending order), the operations degrade to O(n) time complexity, which is inefficient.
+
+An example of an unbalanced tree is when all elements are **inserted in either ascending or descending order**, creating a **degenerate tree (a tree where each parent node has only one child)**.
+
+This essentially turns the tree into a linked list, where each node points to the next one in the sequence.
+
+Example of Unbalanced Tree
+
+```
+1
+ \
+  2
+   \
+    3
+     \
+      4
+       \
+        5
+```
+
+This tree is unbalanced since:
+
+-   All the nodes are aligned in a straight line, becoming a linked list
+-   The height of the tree is n-1 where n is the number of nodes. In this case, the height is 5-1 = 4.
+-   The time complexity for search, insertion, and deletion operations in this tree is O(n). Which is inefficient! A balanced tree will give us O(log n) time
+
+### What is an Balanced Binary Search Tree?
+
+A balanced tree is a type of binary tree in which the height difference between the left and right subtrees of any node is no more than one.
+
+#### How to determine is a Binary Search Tree is balanced?
+
+Look at the height of the tree and the difference between the left and right subtrees of each node. A tree is balanced if the height difference between the left and right is no more than one.
+
+Example of Balanced Binary Search Tree
+
+```
+      3
+     / \
+    2   5
+   /   /
+  1   4
+```
 
 Examples
 

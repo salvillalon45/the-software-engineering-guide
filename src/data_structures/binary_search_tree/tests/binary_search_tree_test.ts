@@ -1,11 +1,11 @@
 import BinarySearchTree, { isBinarySearchTree } from '../binary_search_tree';
 
 const bst = new BinarySearchTree<number>();
-// bst.add(10);
-// bst.add(2);
-// bst.add(40);
-// bst.add(20);
-// bst.add(70);
+bst.add(10);
+bst.add(2);
+bst.add(40);
+bst.add(20);
+bst.add(70);
 
 // let tree = {
 // 	root: {
@@ -150,28 +150,9 @@ const bst = new BinarySearchTree<number>();
 // 	}
 // };
 
-// console.log(bst.isBinarySearchTree(bst.root));
-console.log(isBinarySearchTree(tree.root));
-// bst.print();
-
-/*
-	let currentNode = tree;
-
-		function isBinarySearchTreeHelper(currentNode: Node<T> | null) {
-			const currentValue = currentNode?.value as T;
-			const leftValue = currentNode?.left?.value as T;
-			const rightValue = currentNode?.right?.value as T;
-
-			if (!(leftValue < currentValue && currentValue < rightValue)) {
-				console.log('not a tree');
-				return false;
-			}
-			const leftNode = currentNode?.left ?? null;
-			const rightNode = currentNode?.right ?? null;
-
-			isBinarySearchTreeHelper(leftNode);
-			isBinarySearchTreeHelper(rightNode);
-		}
-
-		isBinarySearchTreeHelper(currentNode);
-*/
+// console.log(isBinarySearchTree(tree.root));
+bst.print();
+bst.inOrderTraversalCount();
+// console.log('Max height:: ', bst.findMaxHeight());
+// console.log('Min Height:: ', bst.findMinHeight());
+// console.log('Is It Balanced:: ', bst.isBalanced());
