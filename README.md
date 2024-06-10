@@ -1,9 +1,20 @@
-# JavaScript Design Patters
+# The Software Engineering Guide
 
-A repo that contains my notes as I review and learn JavaScript Design Patterns. Doing this as an effort to write more mature code!
+A repo that contains my learning on JavaScript and how to use it to understand Computer Science Concepts and prepare for data structures and algorithms
 
-The following sections in terms of understanding go as follows:
+It also contains a table with my answers to [NeetCode 150 Technical Interview Problems](https://neetcode.io/practice)
 
-1. Constructor Functions
-2. Prototype Inheritance
-3. Factory Functions Pattern
+It contains the following:
+1. Intro to JS
+  - What is JavaScript
+2. Object Oriented
+  - constructor functions
+  - prototypes
+3. Design Patterns
+  - The Factory Pattern
+  - The Module Pattern
+4. Data Structures
+  - Dynamic Array
+  - Stacks and Queue
+  -  Linked List
+  -  Binary Search Tree
