@@ -308,6 +308,43 @@ class BinarySearchTree<T> {
 	}
 
 	/**
+	 * Perform a Level Order traversal of the bst tree.
+	 * Level Order: Level - Order is Breadth-First Search. It explores all the nodes in a given level
+	 * within a tree before continuing on to the next level.
+	 * If the bst is empty, return null
+	 * @return {Array<T> | null} Array of the nodes visited in level order traversal or null
+	 */
+	levelOrder() {
+		const queue = [this.root];
+		const levelOrderNodes: Array<T> = [];
+
+		function levelOrderTraversal() {
+			while (queue.length > 0) {
+				const node = queue.shift() as Node<T>;
+				const nodeValue = node.value;
+
+				levelOrderNodes.push(nodeValue);
+
+				console.log({ node, queue, levelOrderNodes });
+
+				if (node.left !== null) {
+					queue.push(node.left);
+				}
+				if (node.right !== null) {
+					queue.push(node.right);
+				}
+			}
+		}
+
+		if (this.root === null) {
+			return null;
+		}
+
+		levelOrderTraversal();
+		return levelOrderNodes;
+	}
+
+	/**
 	 * Helper to print the Linked List
 	 * @return {void}
 	 */

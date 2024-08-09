@@ -25,8 +25,7 @@ bst.add(9);
 bst.add(8);
 bst.add(10);
 bst.print();
-console.log(bst.inorder());
-console.log(bst.preorder());
+console.log(bst.levelOrder());
 
 // { value: 7,
 // 	left:
