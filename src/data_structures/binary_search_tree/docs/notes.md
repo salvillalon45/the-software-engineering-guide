@@ -67,11 +67,12 @@ Look at the height of the tree and the difference between the left and right sub
 Example of Balanced Binary Search Tree
 
 ```
-      3
-     / \
-    2   5
-   /   /
-  1   4
+       10
+     /    \
+    2      40
+          /  \
+         20   70
+
 ```
 
 Examples

@@ -3,7 +3,7 @@
  * @class
  * @template T - The type of data stored in the node.
  */
-class Node<T> {
+export class Node<T> {
 	public value: T;
 	public left: Node<T> | null;
 	public right: Node<T> | null;
@@ -27,6 +27,11 @@ class BinarySearchTree<T> {
 		this.root = null;
 	}
 
+	/**
+	 * Adds a new node into the bst. It will correctly insert in the left or right subtree
+	 * @param {T} element - the element to be added to the bst
+	 * @return {boolean} False if value already exists, true if added successfully
+	 */
 	add(newValue: T): boolean {
 		const newNode = new Node(newValue);
 
@@ -67,6 +72,10 @@ class BinarySearchTree<T> {
 		return true;
 	}
 
+	/**
+	 * Finds the minimum value in the bst
+	 * @return {T | null} The minimum value
+	 */
 	findMin(): T | null {
 		// loop all the way to the left.
 		// Once that currentNode.left is null, we found the leaf in the tree so we return the value
@@ -84,6 +93,10 @@ class BinarySearchTree<T> {
 		return currentNode.value;
 	}
 
+	/**
+	 * Finds the maximum value in the bst
+	 * @return {T | null} The maximum value
+	 */
 	findMax(): T | null {
 		if (this.root === null) {
 			// Return null if tree is empty
@@ -99,6 +112,10 @@ class BinarySearchTree<T> {
 		return currentNode.value;
 	}
 
+	/**
+	 * Determines if the value you are searching for exists in the bst
+	 * @return {boolean} False if value does not exist, True if value does exist
+	 */
 	isPresent(searchValue: T): boolean {
 		let currentNode = this.root;
 
@@ -119,67 +136,176 @@ class BinarySearchTree<T> {
 		return false;
 	}
 
-	inOrderTraversalCount(): Array<number> {
-		const inorderNodes: Array<number> = [];
-
-		// function inOrderTraversalHelper(node: Node<T> | null, count: number) {
-		// 	if (node === null) {
-		// 		return;
-		// 	} else {
-		// 		count += 1;
-		// 		inOrderTraversalHelper(node.left, count);
-		// 		const nodeValue = node.value as number;
-		// 		inorderNodes.push(nodeValue);
-		// 		inOrderTraversalHelper(node.right, count);
-		// 	}
-		// }
-
-		function inOrderTraversalHelper(node: Node<number> | null): number {
+	/**
+	 * Determines if the given tree is balanced
+	 * A balanced tree is a type of binary tree in which the height difference
+	 * between the left and right subtrees of any node is no more than one.
+	 * This mean you need to check the height difference at each node and their subtree
+	 * @return {boolean} Boolean - if the tree is balanced or not
+	 */
+	isBalanced(): boolean {
+		function checkBalance(node: Node<T> | null) {
 			if (node === null) {
 				return 0;
 			} else {
-				return (
-					1 +
-					inOrderTraversalHelper(node.left) +
-					inOrderTraversalHelper(node.right)
-				);
+				const leftResult = checkBalance(node.left) as number;
+				const rightResult = checkBalance(node.right) as number;
+
+				if (Math.abs(leftResult - rightResult) <= 1) {
+					// Balanced
+					return 1 + Math.max(leftResult, rightResult);
+				} else {
+					// Not Balanced
+					return -1;
+				}
 			}
 		}
 
-		inOrderTraversalHelper(this.root);
-		console.log({ inorderNodes }, inorderNodes.length);
+		const result = checkBalance(this.root);
+		return result !== -1;
+	}
 
+	/**
+	 * Helper to find the minimum height of a bst
+	 * @return {number} The minimum height of the bst
+	 */
+	private findMinHeightHelper(node: Node<T> | null): number {
+		if (node === null) {
+			return 0;
+		}
+
+		const leftHeight = this.findMinHeightHelper(node.left) as number;
+		const rightHeight = this.findMinHeightHelper(node.right) as number;
+
+		return 1 + Math.min(leftHeight, rightHeight);
+	}
+
+	/**
+	 * Find the minimum height of a bst
+	 * @return {number} The minimum height of the bst
+	 */
+	findMinHeight(root: Node<T> | null): number {
+		const height = this.findMinHeightHelper(root) - 1;
+		return height;
+	}
+
+	/**
+	 * Helper to find the maximum height of a bst
+	 * @return {number} The maximum height of the bst
+	 */
+	private findMaxHeightHelper(node: Node<T> | null) {
+		if (node === null) {
+			// If the node is null, it contributes 0 to the height
+			return 0;
+		}
+
+		// Recursively find the height of the left subtree
+		const leftResult = this.findMaxHeightHelper(node.left) as number;
+
+		// Recursively find the height of the right subtree
+		const rightResult = this.findMaxHeightHelper(node.right) as number;
+
+		// Return the height of the tree rooted at this node
+		// The height is 1 (for the current node) plus the maximum of the heights of the left and right subtrees
+		return 1 + Math.max(leftResult, rightResult);
+	}
+
+	/**
+	 * Find the maximum height of a bst
+	 * @return {number} The maximum height of the bst
+	 */
+	findMaxHeight(root: Node<T> | null): number {
+		/*
+			Why subtract minus 1? Because the height of a node is defined as the number of edges on the longest
+			path from the node to a leaf
+			    4
+			   /
+			  2
+			Here there are two nodes and one edge. 2 - 1 = 1. This is the height
+		*/
+		const height = this.findMaxHeightHelper(root) - 1;
+		return height;
+	}
+
+	/**
+	 * Perform a In Order traversal of the bst tree.
+	 * In-order: Begin the search at the left-most node and end at the right-most node
+	 * If the bst is empty, return null
+	 * @return {Array<T> | null} Array of the nodes visited in inorder traversal or null
+	 */
+	inorder(): Array<T> | null {
+		const inorderNodes: Array<T> = [];
+
+		function inorderTraversal(node: Node<T> | null) {
+			if (node === null) {
+				return;
+			}
+
+			inorderTraversal(node.left);
+			inorderNodes.push(node.value);
+			inorderTraversal(node.right);
+		}
+
+		if (this.root === null) {
+			return null;
+		}
+
+		inorderTraversal(this.root);
 		return inorderNodes;
 	}
 
-	// findMaxHeight(): number {
-	// 	if (this.root === null) {
-	// 		// Return 0 if tree is empty
-	// 		return -1;
-	// 	} else {
-	// 		const inorderNodes = this.inOrderTraversal();
-	// 		const totalNodes = inorderNodes.length;
-	// 		const maxHeight = totalNodes - 1;
-	// 		return maxHeight;
-	// 	}
-	// }
+	/**
+	 * Perform a Pre Order traversal of the bst tree.
+	 * Pre-order: Explore all the roots before the leaves.
+	 * If the bst is empty, return null
+	 * @return {Array<T> | null} Array of the nodes visited in preorder traversal or null
+	 */
+	preorder() {
+		const preorderNodes: Array<T> = [];
 
-	// findMinHeight(): number {
-	// 	if (this.root === null) {
-	// 		// Return 0 if tree is empty
-	// 		return -1;
-	// 	} else {
-	// 		const inorderNodes = this.inOrderTraversal();
-	// 		const totalNodes = inorderNodes.length;
-	// 		const minimumHeight = Math.log2(totalNodes);
-	// 		return minimumHeight;
-	// 	}
-	// }
+		function preorderTraversal(node: Node<T> | null) {
+			if (node === null) {
+				return;
+			}
 
-	// isBalanced(): boolean {
-	// 	const result = this.findMaxHeight() - this.findMinHeight();
-	// 	return result <= 1;
-	// }
+			preorderNodes.push(node.value);
+			preorderTraversal(node.left);
+			preorderTraversal(node.right);
+		}
+
+		if (this.root === null) {
+			return null;
+		}
+
+		preorderTraversal(this.root);
+	}
+
+	/**
+	 * Perform a Post Order traversal of the bst tree.
+	 * Pre-order: Explore all the leaves before the root.
+	 * If the bst is empty, return null
+	 * @return {Array<T> | null} Array of the nodes visited in postorder traversal or null
+	 */
+	postorder() {
+		const postorderNodes: Array<T> = [];
+
+		function postorderTraversal(node: Node<T> | null) {
+			if (node === null) {
+				return;
+			}
+
+			postorderTraversal(node.left);
+			postorderTraversal(node.right);
+			postorderNodes.push(node.value);
+		}
+
+		if (this.root === null) {
+			return null;
+		}
+
+		postorderTraversal(this.root);
+		return postorderNodes;
+	}
 
 	/**
 	 * Helper to print the Linked List
