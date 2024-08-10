@@ -28,7 +28,7 @@ class BinarySearchTree<T> {
 	}
 
 	/**
-	 * Adds a new node into the bst. It will correctly insert in the left or right subtree
+	 * Adds a new node into the bst. It will correctly insert in the left or right subtree.
 	 * @param {T} element - the element to be added to the bst
 	 * @return {boolean} False if value already exists, true if added successfully
 	 */
@@ -73,7 +73,7 @@ class BinarySearchTree<T> {
 	}
 
 	/**
-	 * Finds the minimum value in the bst
+	 * Finds the minimum value in the bst.
 	 * @return {T | null} The minimum value
 	 */
 	findMin(): T | null {
@@ -94,7 +94,7 @@ class BinarySearchTree<T> {
 	}
 
 	/**
-	 * Finds the maximum value in the bst
+	 * Finds the maximum value in the bst.
 	 * @return {T | null} The maximum value
 	 */
 	findMax(): T | null {
@@ -113,7 +113,7 @@ class BinarySearchTree<T> {
 	}
 
 	/**
-	 * Determines if the value you are searching for exists in the bst
+	 * Determines if the value you are searching for exists in the bst.
 	 * @return {boolean} False if value does not exist, True if value does exist
 	 */
 	isPresent(searchValue: T): boolean {
@@ -137,7 +137,7 @@ class BinarySearchTree<T> {
 	}
 
 	/**
-	 * Determines if the given tree is balanced
+	 * Determines if the given tree is balanced.
 	 * A balanced tree is a type of binary tree in which the height difference
 	 * between the left and right subtrees of any node is no more than one.
 	 * This mean you need to check the height difference at each node and their subtree
@@ -151,7 +151,9 @@ class BinarySearchTree<T> {
 				const leftResult = checkBalance(node.left) as number;
 				const rightResult = checkBalance(node.right) as number;
 
-				if (Math.abs(leftResult - rightResult) <= 1) {
+				const heightDifference = Math.abs(leftResult - rightResult);
+
+				if (heightDifference <= 1) {
 					// Balanced
 					return 1 + Math.max(leftResult, rightResult);
 				} else {
@@ -166,7 +168,7 @@ class BinarySearchTree<T> {
 	}
 
 	/**
-	 * Helper to find the minimum height of a bst
+	 * Helper to find the minimum height of a bst.
 	 * @return {number} The minimum height of the bst
 	 */
 	private findMinHeightHelper(node: Node<T> | null): number {
@@ -181,7 +183,7 @@ class BinarySearchTree<T> {
 	}
 
 	/**
-	 * Find the minimum height of a bst
+	 * Find the minimum height of a bst.
 	 * @return {number} The minimum height of the bst
 	 */
 	findMinHeight(root: Node<T> | null): number {

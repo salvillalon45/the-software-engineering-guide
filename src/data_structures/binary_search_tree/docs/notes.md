@@ -58,7 +58,9 @@ This tree is unbalanced since:
 
 ### What is an Balanced Binary Search Tree?
 
-A balanced tree is a type of binary tree in which the height difference between the left and right subtrees of any node is no more than one.
+A balanced tree is a type of binary tree in which the height difference
+between the left and right subtrees of any node is no more than one.
+This mean you need to check the height difference at each node and their subtree! (This is something that I did not know, and had to debug to understand!)
 
 #### How to determine is a Binary Search Tree is balanced?
 
@@ -75,69 +77,143 @@ Example of Balanced Binary Search Tree
 
 ```
 
-Examples
+**Let's go through the tree**
 
-<a href='https://stackoverflow.com/a/644297'>A train can be a good real life example of a Linked List!</a>
+Node 10 has children
 
--   Train cars are linked in a specific order so that they may be loaded, unloaded, transferred, dropped off, and picked up in the most efficient manner possible.
--   The cars are loaded on the train in order so that a whole chunk of it can be detached, and the remainder of the train moves on.
--   The end of the train is easier to detach than a portion in the middle, and vastly easier than detaching a few cars in one spot, and a few cars in another spot.
--   If needed, however, you can insert and remove items at any point in the train.
+-   left child, node 2, height = 1
+    -   No children
+    -   Left, null, return 0
+    -   Right, null, return 0
+    -   Height Difference = |0 - 0| = 0, which is ≤ 1, balanced ✅.
+    -   Height = 1 + max(0,0) = 1
+-   right child, node 40, height = 2
+    -   Has children
+    -   Left, 20
+    -   At Node 20, height = 1
+        -   Left, null, return 0
+        -   Right, null, return 0
+        -   Height Difference = |0 - 0| = 0, which is ≤ 1, balanced ✅.
+        -   Height = 1 + max(0,0) = 1
+    -   Right, 70
+    -   At Node 70, height = 1
+        -   Left, null, return 0
+        -   Right, null, return 0
+        -   Height Difference = |0 - 0| = 0, which is ≤ 1, balanced ✅.
+        -   Height = 1 + max(0,0) = 1
+    -   Height Difference = |1 - 1| = 0, which is ≤ 1, balanced ✅.
+    -   Height = 1 + max(1, 1) = 2 for node 40
+-   Height Difference = |1 - 1| = 0, which is ≤ 1, balanced ✅.
+-   height = 1 + max(1,2) = 3 for node 10
 
-<div style='display: flex; gap: 1rem'>
-    <img src="../images/linked_list.png" alt="A visual of a linked list with pointers" width="300"/>
-    <a href='https://stackoverflow.com/a/644297' target='_blank'>
-        <img src="../images/train.jpeg" alt="A train" width="200"/>
-    </a>
+**As a Result**
+
+-   Height of the BST: 2
+-   Balanced: Yes, the tree is balanced because the height difference between the left and right subtrees of each node is at most 1.
+
+## Real Life Examples
+
+<div style='display: flex; gap: 1rem;'>
+    <img src="../images/file_explorer.jpg" alt="A visual of the window's file explorer" width="300"/>
+    <p>A File Explorer is an example of a Binary Search Tree!
 </div>
+
+Imagine you have a directory structure like this:
+
+```
+Documents
+│
+├── Projects
+│   ├── ProjectA
+│   └── ProjectB
+│
+├── Photos
+│   ├── 2023
+│   │   ├── January
+│   │   └── February
+│   └── 2022
+│       ├── Summer
+│       └── Winter
+│
+└── Music
+    ├── Rock
+    └── Jazz
+```
+
+-   Each folder or file will be a node
+-   Folders containing other folders or files are parent nodes, while the folders or files inside them are child nodes.
+-   The tree structure is organized so that, for example, searching for a specific file or folder involves navigating through the tree from the root (e.g., "Documents") down through its branches.
+
+**This resembles a BST**
+
+-   Search Efficiency: The structure allows efficient searches. For example, if you want to find the "Winter" folder, you start at "Documents," go to "Photos," then "2022," and finally "Winter."
+    -   The search time is proportional to the height of the tree, making it faster than searching through a linear list of all files and folders.
 
 ## Implementation
 
--   Implemented a generic Singly Linked List and Node class using TypeScript!
+-   Implemented a generic Binary Search Tree and Node class using TypeScript!
 -   Learned how to setup a TypeScript project with nodemon!
--   Includes the following **private** member variables
-
-        -   **tail**: represents the last element in the linked list
-        -   **head**: represents the first element in the linked list
-        -   **_length**: represents total nodes in the linked list
-
 -   Includes the following methods:
 
-    -   **insertHead**: Insert a new node at the head of the linked list.
-    -   **insertTail**: Insert a new node at the tail of the linked list.
-    -   **insertAt**: Insert a new node at a given index.
-    -   **remove**: Remove a node at a specified index.
-    -   **get**: Retrieve the value of a node at a given index.
-    -   **toArray**: Convert the linked list into an array.
-    -   **length**: Get the length of the linked list.
-    -   **print**: Helper to print the linked list
+    -   **add**: Adds a new node into the bst.
+    -   **findMin**: Finds the minimum value in the bst.
+    -   **findMax**: Finds the maximum value in the bst.
+    -   **isPresent**: Determines if the value you are searching for exists in the bst.
+    -   **isBalanced**: Determines if the given tree is balanced.
+    -   **findMinHeight**: Find the minimum height of a bst.
+    -   **findMaxHeight**: Find the maximum height of a bst.
+    -   **print**: Helper to print the bst
+
+-   Includes the following tree traversal methods:
+
+    -   **inorder**: Perform a In Order traversal of the bst tree.
+    -   **preorder**: Perform a Pre Order traversal of the bst tree.
+    -   **postorder**: Perform a Post Order traversal of the bst tree.
+    -   **levelOrder**: Performs a Level Order (Breadth First Search of the tree).
+    -   **reverseLevelOrder**:Perform a Reverse Level Order traversal of the bst tree.
+
+-   Includes the following private methods:
+
+    -   **findMinHeightHelper**: Helper to find the minimum height of a bst.
+    -   **findMaxHeightHelper**: Helper to find the maximum height of a bst.
 
 -   Time & Space Complexity
-    -   **insertHead**:
-        -   Time O(1): moving the pointers to point at different nodes
+    -   **add**:
+        -   Time O(log n): If the tree is balanced, insertion requires traversing down a path, which is proportional to the height of the tree.
         -   SpaceO(1): no new space created
-    -   **insertTail**:
-        -   Time O(1): moving the pointers to point at different nodes
+    -   **findMin**:
+        -   Time O(h): Depends on the height of the tree, you follow the left side of the tree
         -   Space O(1): now new space created
-    -   **insertAt**:
-        -   Time O(N): if the node is between the head or tail, we will need to loop until the index is found
+    -   **findMax**:
+        -   Time O(h): Depends on the height of the tree, you follow the right side of the tree
         -   Space O(1): now new space created
-    -   **remove**:
-        -   Time O(N): looping through the list until we reach the designated node
+    -   **isPresent**:
+        -   Time O(log n): searching requires traversing down a path proportional to the height of the tree.
         -   Space O(1): now new space created
-    -   **get**:
-        -   Time O(N): looping through the list until we reach the designated node
-        -   Space O(1): now new space created
-    -   **toArray**:
-        -   Time O(N): looping through each node in the list and pushing the data property on each node and pushing it into an array
-        -   Space O(1): now new space created
-    -   **length**:
-        -   Time O(1): returning the total length of the list
-        -   Space O(1): now new space created
+    -   **isBalanced**:
+        -   Time O(n): Checks the height of each node and height checking itself is O(h)
+        -   Space O(h): The function uses stack space for recursive calls, where h is the height of the tree.
+    -   **findMinHeight**:
+        -   Time O(N): Must traverse the entire tree to find the minimum height, as it might require visiting all nodes.
+        -   Space O(h): The function uses stack space for recursive calls, where h is the height of the tree.
+    -   **findMaxHeight**:
+        -   Time O(1): Must traverse the entire tree to find the maximum height, as it might require visiting all nodes.
+        -   Space O(h): The function uses stack space for recursive calls, where h is the height of the tree.
+    -   **inorder**:
+        -   Time O(n): Visit each node
+        -   Space O(h): The function uses stack space for recursive calls, where h is the height of the tree.
+    -   **preorder**:
+        -   Time O(n): Visit each node
+        -   Space O(h): The function uses stack space for recursive calls, where h is the height of the tree.
+    -   **postorder**:
+        -   Time O(n): Visit each node
+        -   Space O(h): The function uses stack space for recursive calls, where h is the height of the tree.
+    -   **levelOrder**:
+        -   Time O(n): Visit each node
+        -   Space O(n): Create a queue that holds all nodes in the bst
+    -   **reverseLevelOrder**:
+        -   Time O(n): Visit each node
+        -   Space O(n): Creates a queue that holds all nodes in the bst
     -   **print**:
         -   Time O(N): looping through each node
         -   Space O(1): now new space created
-
-## Notes && Interesting facts
-
-This was a good exercise to remember how Linked List work. A good reminder on pointers and
