@@ -325,8 +325,6 @@ class BinarySearchTree<T> {
 
 				levelOrderNodes.push(nodeValue);
 
-				console.log({ node, queue, levelOrderNodes });
-
 				if (node.left !== null) {
 					queue.push(node.left);
 				}
@@ -342,6 +340,41 @@ class BinarySearchTree<T> {
 
 		levelOrderTraversal();
 		return levelOrderNodes;
+	}
+
+	/**
+	 * Perform a Reverse Level Order traversal of the bst tree.
+	 * Level Order: Level - Order is Breadth-First Search. It explores all the nodes in a given level
+	 * within a tree before continuing on to the next level.
+	 * If the bst is empty, return null
+	 * @return {Array<T> | null} Array of the nodes visited in reverse level order traversal or null
+	 */
+	reverseLevelOrder(): Array<T> | null {
+		const queue = [this.root];
+		const reverseLevelOrderNodes: Array<T> = [];
+
+		function reverseLevelOrderTraversal() {
+			while (queue.length > 0) {
+				const node = queue.shift() as Node<T>;
+				const nodeValue = node.value;
+
+				reverseLevelOrderNodes.push(nodeValue);
+
+				if (node.right !== null) {
+					queue.push(node.right);
+				}
+				if (node.left !== null) {
+					queue.push(node.left);
+				}
+			}
+		}
+
+		if (this.root === null) {
+			return null;
+		}
+
+		reverseLevelOrderTraversal();
+		return reverseLevelOrderNodes;
 	}
 
 	/**

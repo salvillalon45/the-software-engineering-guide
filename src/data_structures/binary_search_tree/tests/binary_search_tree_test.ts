@@ -25,7 +25,8 @@ bst.add(9);
 bst.add(8);
 bst.add(10);
 bst.print();
-console.log(bst.levelOrder());
+console.log('levelOrderNode:: ', bst.levelOrder());
+console.log('reversalLeverlOrderNodes:: ', bst.reverseLevelOrder());
 
 // { value: 7,
 // 	left:
