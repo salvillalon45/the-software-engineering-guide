@@ -12,3 +12,7 @@ Write a function that takes a list of integers (e.g., [4,3,9]) and returns a lis
 t9Combos([4,3,9])
 => ['gdw', 'gdy', 'gdz', 'gdx', 'gew', ...]
 ```
+
+## Notes
+
+-   This is backtracking problem where you can use DFS, but you can solve this with BFS and treat like a graph
