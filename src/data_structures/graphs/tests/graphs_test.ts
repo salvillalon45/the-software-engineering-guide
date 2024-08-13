@@ -1,4 +1,5 @@
 import { bfs } from '../graphs';
+import { t9Combos } from '../sample_problems';
 
 const exBFSGraph1 = [
 	[0, 1, 0, 0],
