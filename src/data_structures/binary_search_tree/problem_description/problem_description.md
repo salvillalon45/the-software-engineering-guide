@@ -1,58 +1,130 @@
-# Design a Singly Linked List
+# Implementing a Binary Search Tree (BST)
 
-## Problem Description
+## Problem Description:
 
-In this assignment, you will be tasked with implementing a basic linked list data structure in TypeScript. Linked lists are fundamental data structures consisting of a sequence of elements (nodes), where each node points to the next node in the sequence. Your implementation should include functionalities to insert elements at the head and tail of the linked list, remove elements from specified positions, retrieve elements at given indices, and convert the linked list into an array.
+In this assignment, you will implement a Binary Search Tree (BST) in TypeScript, complete with various methods for managing and traversing the tree. A BST is a data structure where each node has a value, and each value is greater than the values in its left subtree and less than the values in its right subtree.
 
-## Class Structure:
+You will be provided with the class structure for the `Node` and `BinarySearchTree`, along with some utility functions. Your task is to implement the following methods and test them for correctness.
 
-### Node Class:
+## Part 1: Implement the Node Class
 
--   Create a Node class to represent individual elements in the linked list.
--   Each node should contain two properties: data, which stores the value of the node, and next, a reference to the next node in the sequence.
+The `Node` class represents an individual node in the Binary Search Tree.
 
-### Linked List Class:
+-   **Properties:**
 
--   Implement a LinkedList class to manage the linked list.
--   It should contain properties to keep track of the head and tail nodes, as well as the length of the linked list.
--   Implement methods to:
-    -   **insertHead**: Insert a new node at the head of the linked list.
-    -   **insertTail**: Insert a new node at the tail of the linked list.
-    -   **insertAt**: Insert a new node at a given index.
-    -   **remove**: Remove a node at a specified index.
-    -   **get**: Retrieve the value of a node at a given index.
-    -   **toArray**: Convert the linked list into an array.
-    -   **length**: Get the length of the linked list.
+    -   `value: T` - The value stored in the node.
+    -   `left: Node<T> | null` - The left child node.
+    -   `right: Node<T> | null` - The right child node.
 
-## Requirements:
+-   **Constructor:**
+    -   Initializes the node with a value and sets its left and right children to `null`.
 
-1. Implement the Node and LinkedList classes according to the provided specifications.
-2. Ensure that the linked list behaves correctly when adding, removing, and retrieving elements.
-3. Test your implementation thoroughly using various test cases to validate its functionality.
-4. Use TypeScript syntax and adhere to best practices for code readability and maintainability.
+## Part 2: Implement the BinarySearchTree Class
 
-## Example Usage:
+The `BinarySearchTree` class manages the entire tree and provides methods to interact with it.
 
-```
-// Sample usage of the implemented linked list
+-   **Properties:**
 
-const list = new LinkedList<number>();
+    -   `root: Node<T> | null` - The root node of the tree.
 
-list.insertHead(10);
+-   **Methods to Implement:**
 
-list.insertTail(20);
+    1. **`add(newValue: T): boolean`**
 
-list.insertTail(30);
+        - Adds a new node to the BST.
+        - Returns `false` if the value already exists, `true` if added successfully.
 
-list.print(); // Output: 10 -> 20 -> 30
+    2. **`findMin(): T | null`**
 
-console.log(list.get(1)); // Output: 20
+        - Finds and returns the minimum value in the BST.
+        - Returns `null` if the tree is empty.
 
-list.remove(1);
+    3. **`findMax(): T | null`**
 
-list.print(); // Output: 10 -> 30
+        - Finds and returns the maximum value in the BST.
+        - Returns `null` if the tree is empty.
 
-console.log(list.toArray()); // Output: [10, 30]
+    4. **`isPresent(searchValue: T): boolean`**
 
-console.log(list.getLength()); // Output: 2
+        - Determines if the given value exists in the BST.
+        - Returns `true` if found, `false` otherwise.
+
+    5. **`isBalanced(): boolean`**
+
+        - Determines if the BST is balanced. A balanced tree is one where the height difference between the left and right subtrees of any node is no more than one.
+        - Returns `true` if the tree is balanced, `false` otherwise.
+
+    6. **`findMinHeight(root: Node<T> | null): number`**
+
+        - Finds the minimum height of the BST.
+        - Returns the height as an integer.
+
+    7. **`findMaxHeight(root: Node<T> | null): number`**
+
+        - Finds the maximum height of the BST.
+        - Returns the height as an integer.
+
+    8. **`inorder(): Array<T> | null`**
+
+        - Performs an in-order traversal of the BST (left-root-right).
+        - Returns an array of nodes in the order they were visited or `null` if the tree is empty.
+
+    9. **`preorder(): Array<T> | null`**
+
+        - Performs a pre-order traversal of the BST (root-left-right).
+        - Returns an array of nodes in the order they were visited or `null` if the tree is empty.
+
+    10. **`postorder(): Array<T> | null`**
+
+        - Performs a post-order traversal of the BST (left-right-root).
+        - Returns an array of nodes in the order they were visited or `null` if the tree is empty.
+
+    11. **`levelOrder(): Array<T> | null`**
+
+        - Performs a level-order (BFS) traversal of the BST.
+        - Returns an array of nodes in level order or `null` if the tree is empty.
+
+    12. **`reverseLevelOrder(): Array<T> | null`**
+
+        - Performs a reverse level-order traversal of the BST.
+        - Returns an array of nodes in reverse level order or `null` if the tree is empty.
+
+    13. **`print(): void`**
+        - Prints the structure of the BST in a readable format.
+
+## Part 3: Implement Helper Functions
+
+-   **`findMinHeightHelper(node: Node<T> | null): number`**
+
+    -   A helper function to find the minimum height of the BST.
+
+-   **`findMaxHeightHelper(node: Node<T> | null): number`**
+    -   A helper function to find the maximum height of the BST.
+
+## Part 4: Additional Challenge
+
+Implement the function **`isBinarySearchTree(tree: TreeNode): boolean`** that determines if a given tree structure is a valid BST. This function should check that the values in the tree respect the BST property.
+
+## Instructions:
+
+1. Implement the classes and methods described above.
+2. Write test cases to ensure your implementation is correct. Test edge cases, such as an empty tree, a tree with one node, and a fully balanced tree.
+3. Comment your code to explain your logic.
+4. Submit your code along with the test cases.
+
+## Example Test Case:
+
+```typescript
+const bst = new BinarySearchTree<number>();
+bst.add(10);
+bst.add(5);
+bst.add(15);
+bst.add(2);
+bst.add(7);
+
+console.log(bst.findMin()); // Output: 2
+console.log(bst.findMax()); // Output: 15
+console.log(bst.isPresent(7)); // Output: true
+console.log(bst.isBalanced()); // Output: true
+console.log(bst.inorder()); // Output: [2, 5, 7, 10, 15]
 ```

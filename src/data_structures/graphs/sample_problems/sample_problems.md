@@ -15,4 +15,7 @@ t9Combos([4,3,9])
 
 ## Notes
 
+-   This problem was asked in an interview I had. I came back to redo it!
 -   This is backtracking problem where you can use DFS, but you can solve this with BFS and treat like a graph
+
+### My imp

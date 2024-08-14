@@ -68,10 +68,23 @@ const t9ComboMap: T9ComboMap = {
 	'9': 'wxyz'
 };
 
-export function t9Combos(t9CombosInput: Array<number>) {
+/**
+ * Performs Breadth-First Search to find all possible T9 combos
+ * @param {Array<number>} t9CombosInput - Array of t9 combinations. Ex. t9Combos([4,3,9])
+ * @return {void}
+ */
+export function t9Combos(t9CombosInput: Array<number>): void {
+	// Stores all the combinations we will create
 	let combosQueue = [''];
 
-	function bfsAnduril(characters: string) {
+	/**
+	 * Performs Breadth-First Search on the given character. Ex. ghi. Here we use the
+	 * @param {string} characters - A string contain the characters to traverse. Ex.ghi
+	 * @return {void}
+	 */
+	function bfsTraversal(characters: string): void {
+		// newCombosQueue is used to keep track of the character combination
+		// that we get looping through the given characters
 		const newCombosQueue: Array<string> = [];
 		const t9Characters = [...characters];
 
@@ -83,6 +96,7 @@ export function t9Combos(t9CombosInput: Array<number>) {
 			});
 		});
 
+		// Then overwrite combosQueue to get the new combinations we created
 		combosQueue = newCombosQueue;
 		console.log({ combosQueue });
 		console.log('-------------');
@@ -90,7 +104,7 @@ export function t9Combos(t9CombosInput: Array<number>) {
 
 	t9CombosInput.forEach((t9Combo) => {
 		const characters = t9ComboMap[t9Combo.toString()];
-		bfsAnduril(characters);
+		bfsTraversal(characters);
 	});
 
 	console.log({ combosQueue });
@@ -98,58 +112,114 @@ export function t9Combos(t9CombosInput: Array<number>) {
 
 t9Combos(t9CombosInput);
 
-// console.log(t9map);
-
-// let t9map: string[] = [
-// 	'',
-// 	' ',
-// 	'abc',
-// 	'def',
-// 	'ghi',
-// 	'jkl',
-// 	'mno',
-// 	'pqrs',
-// 	'tuv',
-// 	'wxyz'
-// ];
-
-// function t9Combos(t9Keys: Array<number>) {
-// 	let combos = [''];
-// combos = [g, h, i]
-
-// 	function bfs(t9Chars: string) {
-// 		let new_combos = [];
-
-// 		for (let i = 0; i < t9Chars.length; i++) {
-// 			const t9Char = t9Chars[i];
-
-// 			for (let j = 0; j < combos.length; j++) {
 /*
-                     0 < 1 yes
-                     j = 0
-                     curr = ''
-                     currentCombo += t9Char
-                     "" + g
+    --------------------------------------------------------
+    --------------------------------------------------------
+    This was my original attempt at the problem 
+    --------------------------------------------------------
+    --------------------------------------------------------
+*/
+/*
+    each index of the input has a list a of characters
+    {   
+        4 -> ghi
+        3 -> def
+        9 -> wxyz
+    }
+    
+    4 -> ghi
+    loop through ghi
+        loop through def
+            loop through wxyz
+                gdw, gdx, gdy, gdz
+                gew, gex, gey, gez
+                gf
+    t9Combos([4,3,9])
+    t9Combos([4,3,9,5, 6, 7])
+    => ['gdw', 'gdy', 'gdz', 'gdx', 'gew', ...]            
 
-                     result will be = g
-                     -------
-                 */
-// 				const currentCombo = combos[j];
-// 				let temp = currentCombo + t9Char;
-// 				new_combos.push(temp);
+    Recurisve approach
+    t9Combos([4,3,9])
+    - If i reach the lenght of the input, then push string combo to array, ex return gdw
+    - else {
+        Go through string combination
+    }      
+    
+    depth first search
+    [gdw, gdy, ...]
+    
+     {   
+        4 -> ghi
+        3 -> def
+        9 -> wxyz
+    }
+    breadth first search
+    [g, h, i]
+    [gd, ge, gf, hd, he, hf, id, ie, if]
+    [gdw, gdx, gdy, gdz, gex, gfy ] 
+    
+    loop through the first index of the input [4,3,9] -> 4
+        combos = [g, h, i]
+    loop through the second index of hthe input 4,3,9 -> 3
+        look at current combos and make combination with them 
+        combos =  [gd, ge, gf, hd, he, hf, id, ie, if]
+    loop through the third index of hte iput 4,3,9 -> 9
+        look at the current combos and make comob of them
+        combos =  [gdw, gdx, gdy, gdz, gex, gfy ] 
+        
+
+                     0   1.    2.     3.    4.      5.     6.     7.      8.      9
+let t9map: string[] = [
+	'',
+	' ',
+	'abc',
+	'def',
+	'ghi',
+	'jkl',
+	'mno',
+	'pqrs',
+	'tuv',
+	'wxyz'
+];
+
+    function t9Combos(t9Keys: Array<number>) {
+    let combos = ['']; // combos = [g, h, i]
+
+        function bfs(t9Chars: string) {
+            let new_combos = [];
+            for (let i = 0; i < t9Chars.length; i++) {
+                const t9Char = t9Chars[i];
+                
+                for (let j = 0; j < combos.length; j++) {
+                /*
+                    0 < 1 yes
+                    j = 0
+                    curr = ''
+                    currentCombo += t9Char 
+                    "" + g
+                    
+                    result will be = g
+                    -------
+                    
+                */
+// const currentCombo = combos[j];
+// let temp = currentCombo + t9Char;
+// new_combos.push(temp);
 // [g ,h ,i]
 // ['', 'g', h', i, gd, ge]
 // console.log({temp})
 /*
-                     ---
-                     at 3 which is def
-                     t9Char = d
-                     combos = g,h,i
-                     currentCombo = g
-                     currentCombo + t9Char -> gd
-                     new_combos = [gd]
-
-                 */
+                    first loop at g
+                    new_combos = [g,h,i]
+                    --- 
+                    at 3 which is def
+                    t9Char = d
+                    combos = g,h,i
+                    currentCombo = g
+                    currentCombo + t9Char -> gd
+                    new_combos = [gd]
+        
+                */
 // 			}
 // 		}
 

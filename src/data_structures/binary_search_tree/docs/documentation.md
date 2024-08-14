@@ -113,10 +113,10 @@ Node 10 has children
 
 ## Real Life Examples
 
-<div style='display: flex; gap: 1rem;'>
-    <img src="../images/file_explorer.jpg" alt="A visual of the window's file explorer" width="300"/>
-    <p>A File Explorer is an example of a Binary Search Tree!
-</div>
+<figure style='text-align: center';>
+  <img src="../images/file_explorer.jpg" alt="A visual of the window's file explorer" width="300"/>
+  <figcaption>A File Explorer is an example of a Binary Search Tree!</figcaption>
+</figure>
 
 Imagine you have a directory structure like this:
 
