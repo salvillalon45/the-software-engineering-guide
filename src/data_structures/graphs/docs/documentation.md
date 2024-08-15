@@ -78,69 +78,33 @@ Depth-First Search (DFS) is an algorithm used to traverse or explore a graph or 
 -   Learned how to setup a TypeScript project with nodemon!
 -   Includes the following methods:
 
-    -   **add**: Adds a new node into the bst.
-    -   **findMin**: Finds the minimum value in the bst.
-    -   **findMax**: Finds the maximum value in the bst.
-    -   **isPresent**: Determines if the value you are searching for exists in the bst.
-    -   **isBalanced**: Determines if the given tree is balanced.
-    -   **findMinHeight**: Find the minimum height of a bst.
-    -   **findMaxHeight**: Find the maximum height of a bst.
-    -   **print**: Helper to print the bst
-
--   Includes the following tree traversal methods:
-
-    -   **inorder**: Perform a In Order traversal of the bst tree.
-    -   **preorder**: Perform a Pre Order traversal of the bst tree.
-    -   **postorder**: Perform a Post Order traversal of the bst tree.
-    -   **levelOrder**: Performs a Level Order (Breadth First Search of the tree).
-    -   **reverseLevelOrder**:Perform a Reverse Level Order traversal of the bst tree.
-
--   Includes the following private methods:
-
-    -   **findMinHeightHelper**: Helper to find the minimum height of a bst.
-    -   **findMaxHeightHelper**: Helper to find the maximum height of a bst.
+    -   **bfs**: Performs Breadth-First Search on an Adjacency Matrix Graph.
+    -   **dfsRecursion**: Performs Depth-First Search on an Adjacency Matrix Graph. This function is dfs but a recursive approach.
+    -   **dfsIterative**: Performs Depth-First Search on an Adjacency Matrix Graph. This function is dfs but an iterative approach..
 
 -   Time & Space Complexity
-    -   **add**:
-        -   Time O(log n): If the tree is balanced, insertion requires traversing down a path, which is proportional to the height of the tree.
-        -   SpaceO(1): no new space created
-    -   **findMin**:
-        -   Time O(h): Depends on the height of the tree, you follow the left side of the tree
-        -   Space O(1): now new space created
-    -   **findMax**:
-        -   Time O(h): Depends on the height of the tree, you follow the right side of the tree
-        -   Space O(1): now new space created
-    -   **isPresent**:
-        -   Time O(log n): searching requires traversing down a path proportional to the height of the tree.
-        -   Space O(1): now new space created
-    -   **isBalanced**:
-        -   Time O(n): Checks the height of each node and height checking itself is O(h)
-        -   Space O(h): The function uses stack space for recursive calls, where h is the height of the tree.
-    -   **findMinHeight**:
-        -   Time O(N): Must traverse the entire tree to find the minimum height, as it might require visiting all nodes.
-        -   Space O(h): The function uses stack space for recursive calls, where h is the height of the tree.
-    -   **findMaxHeight**:
-        -   Time O(1): Must traverse the entire tree to find the maximum height, as it might require visiting all nodes.
-        -   Space O(h): The function uses stack space for recursive calls, where h is the height of the tree.
-    -   **inorder**:
-        -   Time O(n): Visit each node
-        -   Space O(h): The function uses stack space for recursive calls, where h is the height of the tree.
-    -   **preorder**:
-        -   Time O(n): Visit each node
-        -   Space O(h): The function uses stack space for recursive calls, where h is the height of the tree.
-    -   **postorder**:
-        -   Time O(n): Visit each node
-        -   Space O(h): The function uses stack space for recursive calls, where h is the height of the tree.
-    -   **levelOrder**:
-        -   Time O(n): Visit each node
-        -   Space O(n): Create a queue that holds all nodes in the bst
-    -   **reverseLevelOrder**:
-        -   Time O(n): Visit each node
-        -   Space O(n): Creates a queue that holds all nodes in the bst
-    -   **print**:
-        -   Time O(N): looping through each node
-        -   Space O(1): now new space created
+    -   **bfsAdjacencyMatrix**:
+        -   This is bfs on an adjaceny matrix
+        -   Time O(n^2): due to the adjacency matrix requiring a full scan of n neighbors for each of the n nodes.
+        -   Space O(n): because of the space needed to store the queue, visited set, and distances.
+    -   **dfsRecursionAdjacencyMatrix**:
+        -   Time O(n^2): Visit each node, and then you have to visit the neighbors of that node
+        -   Space O(n): The visitedSet, the traversalOrder array, and the recursive call stack
+    -   **dfsIterativeAdjacencyMatrix**:
+        -   Time O(n^2): Visit each node, and then you have to visit the neighbors of that node
+        -   Space O(n): The visitedSet, the traversalOrder array, and the recursive call stack
 
-// let res = distances[neighborNodeIndex];
-// res += 1;
-// distances[neighborNodeIndex] = res;
+## Notes
+
+When implementing `bfsAdjacencyMatrix`, I initially had this for the incrementing the distance
+
+```
+let res = distances[neighborNodeIndex];
+res += 1;
+distances[neighborNodeIndex] = res;
+```
+
+but this gave me the wrong results. After doing more research, I noticed that this was wrong because I was not taking into account that the node was connected! For example.
+`1 <-> 2 <-> 3`, starting from node 1
+
+Here when calculating how far the Node 3 is from Node 1, I need to take into account that it is connected to Node 2! So I need to use that distance and add 1 to it to get 3!

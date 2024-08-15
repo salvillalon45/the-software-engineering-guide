@@ -3,13 +3,13 @@ interface Distances {
 }
 
 /**
- * Performs Breadth-First Search on an Adjacency Matrix Graph
+ * Performs Breadth-First Search on an Adjacency Matrix Graph.
  * @param {Array<Array<number>>} adjacencyMatrixGraph - The graph to traverse
  * @param {number} startingNode - The node to start traversing from
  * @return {Distances} JavaScript object key-value pairs with the node and its distance from the root.
  * 	If the node could not be reached, it should have a distance of Infinity.
  */
-export function bfs(
+export function bfsAdjacencyMatrix(
 	adjacencyMatrixGraph: Array<Array<number>>,
 	startingNode: number
 ): Distances {
@@ -47,7 +47,7 @@ export function bfs(
  * @param {number} startingNode - The node to start traversing from
  * @return {Array<number>} An array of all nodes reachable from startingNode/root.
  */
-export function dfsRecursion(
+export function dfsRecursionAdjacencyMatrix(
 	adjacencyMatrixGraph: Array<Array<number>>,
 	startingNode: number
 ): Array<number> {
@@ -82,7 +82,7 @@ export function dfsRecursion(
  * @param {number} startingNode - The node to start traversing from
  * @return {Array<number>} An array of all nodes reachable from startingNode/root.
  */
-export function dfsIterative(
+export function dfsIterativeAdjacencyMatrix(
 	adjacencyMatrixGraph: Array<Array<number>>,
 	startingNode: number
 ): Array<number> {
