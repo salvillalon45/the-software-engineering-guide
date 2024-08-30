@@ -3,7 +3,8 @@ import {
 	dfsIterativeAdjacencyMatrix,
 	dfsRecursionAdjacencyMatrix
 } from '../graphs';
-import { t9Combos } from '../sample_problems';
+import { t9Combos } from '../sample_problems/t9Combos';
+import '../sample_problems/number_of_islands';
 
 const exBFSGraph1 = [
 	[0, 1, 0, 0],
