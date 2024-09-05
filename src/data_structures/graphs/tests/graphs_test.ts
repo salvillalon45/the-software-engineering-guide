@@ -6,6 +6,7 @@ import {
 import { t9Combos } from '../sample_problems/t9Combos';
 // import '../sample_problems/number_of_islands';
 import '../sample_problems/max_area_of_island';
+import '../sample_problems/clone_graph';
 
 const exBFSGraph1 = [
 	[0, 1, 0, 0],
